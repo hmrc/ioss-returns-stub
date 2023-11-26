@@ -1,0 +1,335 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "javaType": "uk.gov.hmrc.oss.returns.input.model.v1.OssNiReturn",
+  "title": "Returns",
+  "description": "Returns Request v13",
+  "type": "object",
+  "properties": {
+    "vatReturnReferenceNumber": {
+      "type": "string",
+      "pattern": "XI/(IM|XI)[a-zA-Z0-9]{1,12}/[QM]\\d{1,2}\\.\\d{4}"
+    },
+    "version": {
+      "$ref": "#/definitions/date-time"
+    },
+    "traderId": {
+      "$ref": "#/definitions/traderIdType"
+    },
+    "changeDate": {
+      "$ref": "#/definitions/date-time"
+    },
+    "period": {
+      "$ref": "#/definitions/periodType"
+    },
+    "startDate": {
+      "$ref": "#/definitions/date"
+    },
+    "endDate": {
+      "$ref": "#/definitions/date"
+    },
+    "submissionDateTime": {
+      "$ref": "#/definitions/date-time"
+    },
+    "totalAmountVatDueGBP": {
+      "$ref": "#/definitions/amountWithMinimum"
+    },
+    "msconSupplies": {
+      "type": "array",
+      "maxItems": 28,
+      "items": {
+        "$ref": "#/definitions/msconSupply"
+      }
+    }
+  },
+  "required": [
+    "vatReturnReferenceNumber",
+    "version",
+    "traderId",
+    "changeDate",
+    "period",
+    "submissionDateTime",
+    "totalAmountVatDueGBP"
+  ],
+  "definitions": {
+    "msconSupply": {
+      "type": "object",
+      "properties": {
+        "msconCountryCode": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "balanceOfVatDueGBP": {
+          "$ref": "#/definitions/amount"
+        },
+        "grandTotalMsidGoodsGBP": {
+          "$ref": "#/definitions/amountWithMinimum"
+        },
+        "grandTotalMsestGoodsGBP": {
+          "$ref": "#/definitions/amountWithMinimum"
+        },
+        "correctionsTotalGBP": {
+          "$ref": "#/definitions/amount"
+        },
+        "msidSupplies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/supply"
+          }
+        },
+        "msestSupplies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/msestSupplyPerCountry"
+          }
+        },
+        "corrections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/correction"
+          }
+        }
+      },
+      "required": [
+        "msconCountryCode",
+        "balanceOfVatDueGBP"
+      ]
+    },
+    "msestSupplyPerCountry": {
+      "type": "object",
+      "minProperties": 2,
+      "properties": {
+        "countryCode": {
+          "$ref": "#/definitions/country-code"
+        },
+        "euTraderId": {
+          "$ref": "#/definitions/euTraderId"
+        },
+        "supplies": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/supply"
+          }
+        }
+      },
+      "required": [
+        "supplies"
+      ]
+    },
+    "supply": {
+      "type": "object",
+      "properties": {
+        "supplyType": {
+          "$ref": "#/definitions/supplyType"
+        },
+        "vatRate": {
+          "$ref": "#/definitions/vatRate"
+        },
+        "vatRateType": {
+          "$ref": "#/definitions/vatRateType"
+        },
+        "taxableAmountGBP": {
+          "$ref": "#/definitions/amountWithExclusiveMinimum"
+        },
+        "vatAmountGBP": {
+          "$ref": "#/definitions/amountWithExclusiveMinimum"
+        }
+      },
+      "required": [
+        "supplyType",
+        "vatRate",
+        "vatRateType",
+        "taxableAmountGBP",
+        "vatAmountGBP"
+      ]
+    },
+    "correction": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "$ref": "#/definitions/periodType"
+        },
+        "totalVatAmountCorrectionGBP": {
+          "$ref": "#/definitions/amount"
+        }
+      },
+      "required": [
+        "period",
+        "totalVatAmountCorrectionGBP"
+      ]
+    },
+    "vatRateType": {
+      "enum": [
+        "STANDARD",
+        "REDUCED"
+      ]
+    },
+    "supplyType": {
+      "enum": [
+        "GOODS"
+      ]
+    },
+    "traderIdType": {
+      "type": "object",
+      "oneOf": [
+        {"required" : ["vatNumber"]},
+        {"required" : ["IOSSNumber"]}],
+      "properties": {
+        "vatNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12
+        },
+        "IOSSNumber": {
+          "type": "string",
+          "minLength": 12,
+          "maxLength": 12
+        },
+        "issuedBy": {
+          "$ref": "#/definitions/country-code-ni"
+        }
+      },
+      "required": [
+        "issuedBy"
+      ]
+    },
+    "periodType": {
+      "type": "object",
+      "oneOf": [
+        {"required" : ["quarter"]},
+        {"required" : ["month"]}],
+      "properties": {
+        "year": {
+          "type": "integer",
+          "description": "Year represented in 4 digits - year cannot be before 2021",
+          "examples": [
+            2021
+          ]
+        },
+        "quarter": {
+          "type": "integer",
+          "description": "Quarter of the year represented in 1 digit",
+          "minimum": 1,
+          "maximum": 4,
+          "examples": [
+            3
+          ]
+        },
+        "month": {
+          "type": "string",
+          "pattern": "^(0[1-9]|1[0-2])$",
+          "description": "Month of the year",
+          "examples": [
+            "01","02","03","12"
+          ]
+        }
+      },
+      "required": [
+        "year"
+      ]
+    },
+    "vatIdentificationNumber": {
+      "type": "object",
+      "properties": {
+        "issuedBy": {
+          "$ref": "#/definitions/country-code"
+        },
+        "vatIdNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12,
+          "pattern": "^[A-Z0-9+*]*$"
+        }
+      },
+      "required": [
+        "issuedBy",
+        "vatIdNumber"
+      ]
+    },
+    "taxReferenceNumber": {
+      "type": "object",
+      "properties": {
+        "taxRefNumber": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "issuedBy": {
+          "$ref": "#/definitions/country-code"
+        }
+      },
+      "required": [
+        "taxRefNumber",
+        "issuedBy"
+      ]
+    },
+    "euTraderId": {
+      "type": "object",
+      "existingJavaType": "uk.gov.hmrc.oss.returns.model.EuTraderId",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/vatIdentificationNumber"
+        },
+        {
+          "$ref": "#/definitions/taxReferenceNumber"
+        }
+      ]
+    },
+    "msconCountryCode": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "amount" : {
+      "description": "Values should only be to 2 decimal places",
+      "type": "number",
+      "integerDigits": 20,
+      "fractionalDigits": 2
+    },
+    "amountWithMinimum" : {
+      "description": "Values should only be to 2 decimal places",
+      "type": "number",
+      "minimum": 0,
+      "integerDigits": 20,
+      "fractionalDigits": 2
+    },
+    "amountWithExclusiveMinimum" : {
+      "description": "Values should only be to 2 decimal places",
+      "type": "number",
+      "minimum" : 0,
+      "exclusiveMinimum": true,
+      "integerDigits": 20,
+      "fractionalDigits": 2
+    },
+    "date-time" : {
+      "description": "Datetime format yyyy-mm-ddTHH:MM:SS[.sss]Z",
+      "type": "string",
+      "format": "date-time"
+    },
+    "date" : {
+      "description": "Date format YYYY-MM-DD",
+      "type": "string",
+      "format": "date"
+    },
+    "country-code" : {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "country-code-ni" : {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "pattern": "XI"
+    },
+    "vatRate" : {
+      "description": "Values should only be to 2 decimal places",
+      "type": "number",
+      "minimum" : 0,
+      "exclusiveMinimum": true,
+      "maximum": 100,
+      "integerDigits": 3,
+      "fractionalDigits": 2
+    }
+  }
+}
