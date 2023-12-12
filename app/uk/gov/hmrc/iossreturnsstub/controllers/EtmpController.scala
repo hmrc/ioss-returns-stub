@@ -19,6 +19,7 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc._
+import uk.gov.hmrc.iossreturnsstub.models.DateRange
 import uk.gov.hmrc.iossreturnsstub.models.etmp._
 import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
@@ -30,9 +31,9 @@ import scala.concurrent.ExecutionContext
 
 @Singleton()
 class EtmpController @Inject()(
-                                 cc: ControllerComponents,
-                                 jsonSchemaHelper: JsonSchemaHelper
-                               )
+                                cc: ControllerComponents,
+                                jsonSchemaHelper: JsonSchemaHelper
+                              )
   extends BackendController(cc) with Logging {
 
   implicit val ec: ExecutionContext = cc.executionContext
@@ -83,4 +84,21 @@ class EtmpController @Inject()(
     }
   }
 
+  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: DateRange, status: String): Action[AnyContent] = Action.async {
+    implicit request =>
+
+      logger.info(s"With request: $request ${request.headers} ${request.body}")
+      jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+        val obligationsResponse = EtmpObligations(
+          referenceNumber = idNumber,
+          referenceType = regimeType,
+          obligationDetails = Seq(EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "23AL"
+          ))
+        )
+
+        Ok(Json.toJson(obligationsResponse)).toFuture
+      }
+  }
 }

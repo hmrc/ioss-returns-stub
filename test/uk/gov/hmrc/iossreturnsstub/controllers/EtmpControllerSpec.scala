@@ -18,19 +18,18 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-import play.api.http.{MimeTypes, Status}
 import play.api.http.HeaderNames.{ACCEPT, AUTHORIZATION, CONTENT_TYPE, DATE}
+import play.api.http.{MimeTypes, Status}
 import play.api.libs.json.Json
 import play.api.mvc.Headers
-import play.api.test.{FakeRequest, Helpers}
 import play.api.test.Helpers._
+import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.iossreturnsstub.models._
-import uk.gov.hmrc.iossreturnsstub.models.etmp.{EtmpVatRateType, EtmpVatReturn, EtmpVatReturnBalanceOfVatDue, EtmpVatReturnCorrection, EtmpVatReturnGoodsSupplied}
+import uk.gov.hmrc.iossreturnsstub.models.etmp._
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 import java.time.{Clock, LocalDate, LocalDateTime, Month, ZoneId}
+import java.time.format.DateTimeFormatter
 import java.util.{Locale, UUID}
 
 class EtmpControllerSpec extends AnyFreeSpec with Matchers {
@@ -114,4 +113,65 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     }
   }
 
+  "GET /enterprise/obligation-data/{idType}/{idNumber}/{regimeType}" - {
+
+    val referenceNumber = "XI/IM9001234567/2023.M11"
+    val firstDateOfYear = LocalDate.of(2021, 1, 1)
+    val lastDateOfYear = LocalDate.of(2021, 12, 31)
+    val dateRange = DateRange(firstDateOfYear, lastDateOfYear)
+    val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+    val fakeRequest = FakeRequest(
+      GET,
+      routes.EtmpController.getObligations(
+        idType = "IOSS",
+        idNumber = iossNumber,
+        regimeType = "IOSS",
+        dateRange,
+        status = EtmpObligationsFulfilmentStatus.Open.toString
+      ).url
+    )
+
+    "return a successful response" in {
+
+      val successfulObligationsResponse = EtmpObligations(
+        referenceNumber = referenceNumber,
+        referenceType = "IOSS",
+        obligationDetails = Seq(EtmpObligationDetails(
+          status = EtmpObligationsFulfilmentStatus.Open,
+          periodKey = "23AL"
+        ))
+      )
+
+      val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
+
+      val result = controller
+        .getObligations(
+          idType = "",
+          idNumber = referenceNumber,
+          regimeType = "IOSS",
+          dateRange,
+          status = EtmpObligationsFulfilmentStatus.Open.toString
+        )(fakeRequestWithBody)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson(successfulObligationsResponse)
+    }
+
+    "return a bad request when headers are missing" in {
+
+      val fakeRequestWithBody = fakeRequest
+
+      val result = controller
+        .getObligations(
+          idType = "",
+          idNumber = referenceNumber,
+          regimeType = "IOSS",
+          dateRange,
+          status = EtmpObligationsFulfilmentStatus.Open.toString
+        )(fakeRequestWithBody)
+
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+  }
 }
