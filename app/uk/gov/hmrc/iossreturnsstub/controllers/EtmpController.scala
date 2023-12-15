@@ -92,10 +92,16 @@ class EtmpController @Inject()(
         val obligationsResponse = EtmpObligations(
           referenceNumber = idNumber,
           referenceType = regimeType,
-          obligationDetails = Seq(EtmpObligationDetails(
+          obligationDetails = Seq(
+            EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Open,
             periodKey = "23AL"
-          ))
+            ),
+            EtmpObligationDetails(
+              status = EtmpObligationsFulfilmentStatus.Fulfilled,
+              periodKey = "23AK"
+            )
+          )
         )
 
         Ok(Json.toJson(obligationsResponse)).toFuture

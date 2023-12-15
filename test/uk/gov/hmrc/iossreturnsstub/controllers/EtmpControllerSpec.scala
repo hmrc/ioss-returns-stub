@@ -115,20 +115,22 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
   "GET /enterprise/obligation-data/{idType}/{idNumber}/{regimeType}" - {
 
+    val idType = "IOSS"
+    val regimeType = "IOSS"
+    val obligationFulfilmentStatus = "A"
     val referenceNumber = "XI/IM9001234567/2023.M11"
     val firstDateOfYear = LocalDate.of(2021, 1, 1)
     val lastDateOfYear = LocalDate.of(2021, 12, 31)
     val dateRange = DateRange(firstDateOfYear, lastDateOfYear)
-    val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
     val fakeRequest = FakeRequest(
       GET,
       routes.EtmpController.getObligations(
-        idType = "IOSS",
+        idType = idType,
         idNumber = iossNumber,
-        regimeType = "IOSS",
+        regimeType = regimeType,
         dateRange,
-        status = EtmpObligationsFulfilmentStatus.Open.toString
+        status = obligationFulfilmentStatus
       ).url
     )
 
@@ -136,22 +138,28 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
       val successfulObligationsResponse = EtmpObligations(
         referenceNumber = referenceNumber,
-        referenceType = "IOSS",
-        obligationDetails = Seq(EtmpObligationDetails(
-          status = EtmpObligationsFulfilmentStatus.Open,
-          periodKey = "23AL"
-        ))
+        referenceType = idType,
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "23AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "23AK"
+          )
+        )
       )
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
 
       val result = controller
         .getObligations(
-          idType = "",
+          idType = idType,
           idNumber = referenceNumber,
-          regimeType = "IOSS",
+          regimeType = regimeType,
           dateRange,
-          status = EtmpObligationsFulfilmentStatus.Open.toString
+          status = obligationFulfilmentStatus
         )(fakeRequestWithBody)
 
       status(result) shouldBe Status.OK
@@ -164,11 +172,11 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
       val result = controller
         .getObligations(
-          idType = "",
+          idType = idType,
           idNumber = referenceNumber,
-          regimeType = "IOSS",
+          regimeType = regimeType,
           dateRange,
-          status = EtmpObligationsFulfilmentStatus.Open.toString
+          status = obligationFulfilmentStatus
         )(fakeRequestWithBody)
 
       status(result) shouldBe Status.BAD_REQUEST
