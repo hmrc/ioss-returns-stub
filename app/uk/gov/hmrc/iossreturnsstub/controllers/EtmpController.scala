@@ -78,9 +78,11 @@ class EtmpController @Inject()(
         paymentReference = "XI/IM9001234567/2023.M11"
 
       )
-
-      Ok(Json.toJson(vatReturn)).toFuture
-
+      period match {
+        case "23AK" => Ok(Json.toJson(vatReturn)).toFuture
+        case "23AL" => Ok(Json.toJson(vatReturn.copy(periodKey = "23AL"))).toFuture
+        case _ => NotFound(Json.toJson("")).toFuture
+      }
     }
   }
 
