@@ -79,6 +79,7 @@ class JsonSchemaHelper @Inject()(clock: Clock) extends Logging {
             case Some(res) =>
               logger.error(s"Failed json schema ${res.getExceptionThreshold}")
               res.forEach { test =>
+                logger.error(s"${test.toString}")
                 logger.error(test.getMessage)
               }
               Future.successful(BadRequest(Json.toJson(EisErrorResponse(CoreErrorResponse(Instant.now(clock), None, "OSS_400", "Bad Request")))))
