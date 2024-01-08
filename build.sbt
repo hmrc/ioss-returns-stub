@@ -17,6 +17,7 @@ lazy val microservice = Project("ioss-returns-stub", file("."))
     ),
     PlayKeys.playDefaultPort := 10195
   )
+  .settings(PlayKeys.playDefaultPort := 10195)
   .configs(IntegrationTest)
   .settings(integrationTestSettings(): _*)
   .settings(resolvers += Resolver.jcenterRepo)
