@@ -23,7 +23,7 @@
     },
     "periodKey": {
       "description": "period key",
-      "description": "4\tPeriod Key\tA_PERIOD_KEY\tCHAR (4)\tM\t22C1-  01.01.2022\r\nDerive from Period from date NNNN (e.g.22C1). 2 digit from year (22) + C (fixed value) + quarter (1)\r\nThe quarter of the tax period represented as an integer between 1 and 4 where: \r\n1 = Jan to March \r\n2 = April to June \r\n3 = July to Sep \r\n4 = October to Dec \r\n",
+      "description": "Example : 22AA\r\n\r\nDerive from Period from date NNNN (e.g.22AA). 2 digit from year (22) + Two characters for month\r\nAA for January\r\nAB for February\r\n..\r\nAL for December\r\n",
       "type": "string",
       "minLength": 4,
       "maxLength": 4
@@ -91,58 +91,6 @@
       "description": "Total VAT Amount payable for goods supplied from Member State of Identification (GBP)",
       "$ref": "#/definitions/amount_type_any"
     },
-    "goodsDespatachedOrTransported": {
-      "description": "Goods dispatched or transported from another country – ARRAY MAX 28 – This is optional table ",
-      "type": "array",
-      "maxItems": 28,
-      "items": {
-        "type": "object",
-        "properties": {
-          "msOfEstablishment": {
-            "description": "ISO Country code for member state Of Consumption",
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 2
-          },
-          "vatIDNumber": {
-            "description": "vat Number",
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 12
-          },
-          "msOfComsumption": {
-            "description": "ISO Country code for member state Of Consumption",
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 2
-          },
-          "vatRateType": {
-            "description": "VAT Rate Type",
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 40,
-            "enum": [
-              "STANDARD",
-              "REDUCED"
-            ]
-          },
-          "taxableAmountGBP": {
-            "description": "taxable Amount in GBP",
-            "$ref": "#/definitions/amount_type_any"
-          },
-          "vatAmountGBP": {
-            "description": "vat Amount in GBP",
-            "$ref": "#/definitions/amount_type_any"
-          }
-        },
-        "required": [
-          "msOfEstablishment",
-          "msOfComsumption",
-          "vatAmountGBP"
-        ],
-        "additionalProperties": false
-      }
-    },
     "totalVATAmountPayable": {
       "description": "Total VAT Amount payable supplies of goods dispatched or transported from Member States other than \r\nVAT Return Grand Total\r\n",
       "$ref": "#/definitions/amount_type_any"
@@ -158,9 +106,9 @@
         "type": "object",
         "properties": {
           "periodKey": {
-            "description": "22C1 \r\nDerive from Period from date NNNN (e.g.22C1). 2 digit from year (22) + C (fixed value) + quarter (1)\r\nThe quarter of the tax period represented as an integer between 1 and 4 where: \r\n1 = Jan to March \r\n2 = April to June \r\n3 = July to Sep \r\n4 = October to Dec \r\n",
+            "description": "Example : 22AA\r\n\r\nDerive from Period from date NNNN (e.g.22AA). 2 digit from year (22) + Two characters for month\r\nAA for January\r\nAB for February\r\n..\r\nAL for December",
             "type": "string",
-            "minLength": 1,
+            "minLength": 4,
             "maxLength": 4
           },
           "periodFrom": {
@@ -178,13 +126,23 @@
             "type": "string",
             "minLength": 2,
             "maxLength": 2
+          },
+          "totalVATAmountCorrectionGBP": {
+            "description": "TotalVATAmountresultingfromcorrections(GBP)",
+            "$ref": "#/definitions/amount_type_any"
+          },
+          "totalVATAmountCorrectionEUR": {
+            "description": "TotalVATAmountresultingfromcorrections(Euro)",
+            "$ref": "#/definitions/amount_type_any"
           }
         },
         "required": [
           "periodKey",
           "periodFrom",
           "periodTo",
-          "msOfConsumption"
+          "msOfConsumption",
+          "totalVATAmountCorrectionGBP",
+          "totalVATAmountCorrectionEUR"
         ],
         "additionalProperties": false
       }
@@ -223,7 +181,7 @@
         "additionalProperties": false
       }
     },
-    "totalVATAmountDueForAllMSEUR": {
+    "totalVATAmountDueForAllMSGBP": {
       "description": "Total VAT Amount due for all Member State of Consumption (GBP)",
       "$ref": "#/definitions/amount_type_any"
     },
@@ -278,9 +236,8 @@
     "returnPeriodTo",
     "totalVATGoodsSuppliedGBP",
     "totalVATAmountPayable",
-    "totalVATAmountPayableAllSpplied",
     "totalVATAmountFromCorrectionGBP",
-    "totalVATAmountDueForAllMSEUR",
+    "totalVATAmountDueForAllMSGBP",
     "paymentReference",
     "administration"
   ],

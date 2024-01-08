@@ -78,7 +78,9 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             periodKey = "23AJ",
             periodFrom = LocalDate.of(2023, 10, 1).toString,
             periodTo = LocalDate.of(2023, 10, 31).toString,
-            msOfConsumption = "FR"
+            msOfConsumption = "FR",
+            totalVATAmountCorrectionGBP = BigDecimal(2469.13),
+            totalVATAmountCorrectionEUR = BigDecimal(2469.13)
           )
         ),
         totalVATAmountFromCorrectionGBP = BigDecimal(100.00),
@@ -89,7 +91,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             totalVATEUR = BigDecimal(2569.13)
           )
         ),
-        totalVATAmountDueForAllMSEUR = BigDecimal(2569.13),
+        totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
         paymentReference = "XI/IM9001234567/2023.M11"
 
       )
