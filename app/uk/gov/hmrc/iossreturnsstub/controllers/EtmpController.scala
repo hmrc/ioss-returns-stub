@@ -89,20 +89,15 @@ class EtmpController @Inject()(
 
       logger.info(s"With request: $request ${request.headers} ${request.body}")
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
-        val obligationsResponse = EtmpObligations(
-          referenceNumber = idNumber,
-          referenceType = regimeType,
-          obligationDetails = Seq(
-            EtmpObligationDetails(
-            status = EtmpObligationsFulfilmentStatus.Open,
-            periodKey = "23AL"
-            ),
-            EtmpObligationDetails(
-              status = EtmpObligationsFulfilmentStatus.Fulfilled,
-              periodKey = "23AK"
-            )
-          )
-        )
+
+        def generateObligations(idNumber: String): EtmpObligations = idNumber match {
+          case "IM9001234567" => StubData.defaultObligationsResponse
+          case "IM9001234568" => StubData.multipleCorrectionPeriods
+          case "IM9008888888" => StubData.singleCorrectionPeriods
+          case "IM9009999999" => StubData.firstPeriodNoCorrections
+        }
+
+        val obligationsResponse = generateObligations(idNumber)
 
         Ok(Json.toJson(obligationsResponse)).toFuture
       }

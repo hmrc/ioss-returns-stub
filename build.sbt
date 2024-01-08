@@ -15,6 +15,7 @@ lazy val microservice = Project("ioss-returns-stub", file("."))
       "uk.gov.hmrc.iossreturnsstub.models._"
     )
   )
+  .settings(PlayKeys.playDefaultPort := 10195)
   .configs(IntegrationTest)
   .settings(integrationTestSettings(): _*)
   .settings(resolvers += Resolver.jcenterRepo)
