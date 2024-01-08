@@ -55,7 +55,7 @@ class CoreController @Inject()(
           val validationResult = jsonBody.get.validateOpt[CoreVatReturn]
           validationResult match {
             case JsError(errors) =>
-              logger.error(s"Invalid JSON: ${errors.map(_._1.toString()).mkString(", ")}")
+              logger.error(s"Invalid JSON: ${errors.map(error => s"${error._1.toString()} ${error._2}").mkString(", ")}")
               Future.successful(BadRequest(Json.toJson(EisErrorResponse(CoreErrorResponse(Instant.now(clock), None, "OSS_400", "Bad Request")))))
             case _ => {
               logger.info("Successfully submitted vat return")
