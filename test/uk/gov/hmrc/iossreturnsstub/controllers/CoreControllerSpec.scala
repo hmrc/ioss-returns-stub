@@ -110,12 +110,12 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
       status(result) shouldBe Status.ACCEPTED
     }
 
-    "Return missing registration error for vrn 222222222" in {
+    "Return missing registration error for IOSS Number IM9007777777" in {
 
       val now = Instant.now()
       val period = Period(2021, Month.NOVEMBER)
       val coreVatReturn = CoreVatReturn(
-        "XI/XI222222222/Q4.2021",
+        "XI/IM9007777777/M11.2021",
         now.toString,
         CoreTraderId(
           "123456789AAA",
