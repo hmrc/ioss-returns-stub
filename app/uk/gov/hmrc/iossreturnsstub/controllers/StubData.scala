@@ -177,6 +177,37 @@ object StubData {
     )
   )
 
+  val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9001234568",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AJ"
+      )
+    )
+  )
+
   val singleCorrectionPeriods: EtmpObligations = EtmpObligations(
     referenceNumber = "IM9008888888",
     referenceType = "IOSS",

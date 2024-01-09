@@ -93,6 +93,7 @@ class EtmpController @Inject()(
         def generateObligations(idNumber: String): EtmpObligations = idNumber match {
           case "IM9001234567" => StubData.defaultObligationsResponse
           case "IM9001234568" => StubData.multipleCorrectionPeriods
+          case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9008888888" => StubData.singleCorrectionPeriods
           case "IM9009999999" => StubData.firstPeriodNoCorrections
         }
