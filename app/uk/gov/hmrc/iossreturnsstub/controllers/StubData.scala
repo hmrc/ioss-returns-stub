@@ -178,7 +178,7 @@ object StubData {
   )
 
   val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(
-    referenceNumber = "IM9001234568",
+    referenceNumber = "IM9001234566",
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
