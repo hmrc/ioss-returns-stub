@@ -59,6 +59,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
       val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
+        returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
         periodKey = "23AK",
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
         returnPeriodTo = LocalDate.of(2023, 11, 30),
@@ -92,8 +93,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
-        paymentReference = "XI/IM9001234567/2023.M11"
-
+        paymentReference = "XI/IM9001234567.M1123"
       )
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)

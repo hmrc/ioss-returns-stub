@@ -25,7 +25,7 @@ import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{LocalDate, Month}
+import java.time.{LocalDate, LocalDateTime, Month}
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
@@ -45,6 +45,7 @@ class EtmpController @Inject()(
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
       val vatReturn = EtmpVatReturn(
         returnReference = s"XI/$iossNumber/$referencePeriod",
+        returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
         periodKey = period,
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
         returnPeriodTo = LocalDate.of(2023, 11, 30),
