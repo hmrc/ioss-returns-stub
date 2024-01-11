@@ -17,6 +17,7 @@
 package uk.gov.hmrc.iossreturnsstub.controllers
 
 import uk.gov.hmrc.iossreturnsstub.models._
+import uk.gov.hmrc.iossreturnsstub.models.etmp.{EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus}
 
 import java.time.{LocalDate, Month}
 
@@ -139,6 +140,97 @@ object StubData {
       outstandingAmount = Some(BigDecimal(1500)),
       clearedAmount = Some(BigDecimal(0)),
       items = None
+    )
+  )
+
+  val defaultObligationsResponse: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9001234567",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AK"
+      )
+    )
+  )
+
+  val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9001234568",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AJ"
+      )
+    )
+  )
+
+  val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9001234566",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AJ"
+      )
+    )
+  )
+
+  val singleCorrectionPeriods: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9008888888",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AK"
+      )
+    )
+  )
+
+  val firstPeriodNoCorrections: EtmpObligations = EtmpObligations(
+    referenceNumber = "IM9009999999",
+    referenceType = "IOSS",
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AK"
+      )
     )
   )
 }
