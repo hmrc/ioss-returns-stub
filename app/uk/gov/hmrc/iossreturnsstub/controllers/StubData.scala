@@ -163,15 +163,15 @@ object StubData {
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AJ"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AL"
       )
     )
@@ -182,27 +182,27 @@ object StubData {
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AJ"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AL"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "22AJ"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "22AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "22AL"
       )
     )
