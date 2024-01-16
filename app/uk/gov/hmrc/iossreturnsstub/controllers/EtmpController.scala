@@ -96,7 +96,7 @@ class EtmpController @Inject()(
           case "IM9001234568" => StubData.multipleCorrectionPeriods
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9008888888" => StubData.singleCorrectionPeriods
-          case "IM9009999999" => StubData.firstPeriodNoCorrections
+          case "IM9009999888" => StubData.firstPeriodNoCorrections
           case _ => StubData.defaultObligationsResponse
         }
 
