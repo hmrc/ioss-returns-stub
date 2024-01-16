@@ -82,6 +82,46 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             msOfConsumption = "FR",
             totalVATAmountCorrectionGBP = BigDecimal(2469.13),
             totalVATAmountCorrectionEUR = BigDecimal(2469.13)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AJ",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(1856.09),
+            totalVATAmountCorrectionEUR = BigDecimal(1856.09)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AH",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "ES",
+            totalVATAmountCorrectionGBP = BigDecimal(-1856.09),
+            totalVATAmountCorrectionEUR = BigDecimal(-1856.09)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AH",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "IT",
+            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
+            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AL",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "IT",
+            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
+            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AB",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "LT",
+            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
+            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
           )
         ),
         totalVATAmountFromCorrectionGBP = BigDecimal(100.00),
@@ -90,6 +130,16 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             msOfConsumption = "FR",
             totalVATDueGBP = BigDecimal(2569.13),
             totalVATEUR = BigDecimal(2569.13)
+          ),
+          EtmpVatReturnBalanceOfVatDue(
+            msOfConsumption = "ES",
+            totalVATDueGBP = BigDecimal(-2569.13),
+            totalVATEUR = BigDecimal(-2569.13)
+          ),
+          EtmpVatReturnBalanceOfVatDue(
+            msOfConsumption = "IT",
+            totalVATDueGBP = BigDecimal(0),
+            totalVATEUR = BigDecimal(0)
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
