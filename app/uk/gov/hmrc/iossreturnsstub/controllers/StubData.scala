@@ -148,12 +148,12 @@ object StubData {
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AL"
-      ),
-      EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
       )
     )
   )
@@ -163,47 +163,47 @@ object StubData {
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AL"
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AJ"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AJ"
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AL"
       )
     )
   )
 
   val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(
-    referenceNumber = "IM9001234566",
+    referenceNumber = "IM9001234569",
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AL"
-      ),
-      EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AK"
-      ),
-      EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AJ"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "22AL"
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "22AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "22AK"
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "22AJ"
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "22AL"
       )
     )
   )
@@ -213,23 +213,23 @@ object StubData {
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AL"
-      ),
-      EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
       )
     )
   )
 
   val firstPeriodNoCorrections: EtmpObligations = EtmpObligations(
-    referenceNumber = "IM9009999999",
+    referenceNumber = "IM9009999888",
     referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Open,
-        periodKey = "23AK"
+        periodKey = "23AL"
       )
     )
   )
