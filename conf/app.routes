@@ -6,4 +6,4 @@ POST        /vec/submitvatreturn/v1/ioss                                     uk.
 
 GET         /enterprise/financial-data/:idType/:idNumber/:regimeType         uk.gov.hmrc.iossreturnsstub.controllers.FinancialDataController.getFinancialData(idType: String, idNumber: String, regimeType: String, dateRange: DateRange)
 
-GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType        uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getObligations(idType: String, idNumber: String, regimeType: String, from: LocalDate, to: LocalDate, status: String)
+GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType        uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: String)
