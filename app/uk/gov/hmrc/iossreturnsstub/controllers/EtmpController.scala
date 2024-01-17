@@ -19,7 +19,7 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc._
-import uk.gov.hmrc.iossreturnsstub.models.DateRange
+import uk.gov.hmrc.iossreturnsstub.models.{DateRange, ObligationsDateRange}
 import uk.gov.hmrc.iossreturnsstub.models.etmp._
 import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
@@ -78,7 +78,6 @@ class EtmpController @Inject()(
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
         paymentReference = "XI/IM9001234567/2023.M11"
-
       )
 
       Ok(Json.toJson(vatReturn)).toFuture
@@ -86,7 +85,7 @@ class EtmpController @Inject()(
     }
   }
 
-  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: DateRange, status: String): Action[AnyContent] = Action.async {
+  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: String): Action[AnyContent] = Action.async {
     implicit request =>
 
       logger.info(s"With request: $request ${request.headers} ${request.body}")

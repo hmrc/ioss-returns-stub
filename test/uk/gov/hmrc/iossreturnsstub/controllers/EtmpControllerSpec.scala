@@ -123,7 +123,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     val referenceNumber = "IM9001234567"
     val firstDateOfYear = LocalDate.of(2021, 1, 1)
     val lastDateOfYear = LocalDate.of(2021, 12, 31)
-    val dateRange = DateRange(firstDateOfYear, lastDateOfYear)
+    val dateRange = ObligationsDateRange(firstDateOfYear, lastDateOfYear)
 
     val fakeRequest = FakeRequest(
       GET,
