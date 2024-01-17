@@ -42,7 +42,7 @@ class EtmpController @Inject()(
 
     logger.info(s"Here's the request: ${request} ${request.headers} ${request.body}")
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
-      val vatReturn = EtmpVatReturn(
+      val vatReturn = EtmpVatReturn( // TODO make smarter to return for period
         returnReference = "XI/IM9001234567/2023.M11",
         periodKey = "23AK",
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
@@ -78,7 +78,6 @@ class EtmpController @Inject()(
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
         paymentReference = "XI/IM9001234567/2023.M11"
-
       )
 
       Ok(Json.toJson(vatReturn)).toFuture
@@ -86,7 +85,7 @@ class EtmpController @Inject()(
     }
   }
 
-  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: DateRange, status: String): Action[AnyContent] = Action.async {
+  def getObligations(idType: String, idNumber: String, regimeType: String, from: LocalDate, to: LocalDate, status: String): Action[AnyContent] = Action.async {
     implicit request =>
 
       logger.info(s"With request: $request ${request.headers} ${request.body}")
