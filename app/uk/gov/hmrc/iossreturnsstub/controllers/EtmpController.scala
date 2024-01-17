@@ -42,7 +42,7 @@ class EtmpController @Inject()(
 
     logger.info(s"Here's the request: ${request} ${request.headers} ${request.body}")
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
-      val vatReturn = EtmpVatReturn( // TODO make smarter to return for period
+      val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
         periodKey = "23AK",
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
