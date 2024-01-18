@@ -138,7 +138,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
     "return a successful response" in {
 
-      val successfulObligationsResponse = EtmpObligations(
+      val successfulObligationsResponse = EtmpObligations(obligations = Seq(EtmpObligation(
         referenceNumber = referenceNumber,
         referenceType = idType,
         obligationDetails = Seq(
@@ -151,7 +151,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             periodKey = "23AL"
           )
         )
-      )
+      )))
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
 

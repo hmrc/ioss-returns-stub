@@ -17,7 +17,7 @@
 package uk.gov.hmrc.iossreturnsstub.controllers
 
 import uk.gov.hmrc.iossreturnsstub.models._
-import uk.gov.hmrc.iossreturnsstub.models.etmp.{EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus}
+import uk.gov.hmrc.iossreturnsstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus}
 
 import java.time.{LocalDate, Month}
 
@@ -143,7 +143,7 @@ object StubData {
     )
   )
 
-  val defaultObligationsResponse: EtmpObligations = EtmpObligations(
+  val defaultObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     referenceNumber = "IM9001234567",
     referenceType = "IOSS",
     obligationDetails = Seq(
@@ -156,9 +156,9 @@ object StubData {
         periodKey = "23AL"
       )
     )
-  )
+  )))
 
-  val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(
+  val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     referenceNumber = "IM9001234568",
     referenceType = "IOSS",
     obligationDetails = Seq(
@@ -175,9 +175,9 @@ object StubData {
         periodKey = "23AL"
       )
     )
-  )
+  )))
 
-  val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(
+  val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     referenceNumber = "IM9001234569",
     referenceType = "IOSS",
     obligationDetails = Seq(
@@ -206,9 +206,9 @@ object StubData {
         periodKey = "22AL"
       )
     )
-  )
+  )))
 
-  val singleCorrectionPeriods: EtmpObligations = EtmpObligations(
+  val singleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     referenceNumber = "IM9008888888",
     referenceType = "IOSS",
     obligationDetails = Seq(
@@ -221,9 +221,9 @@ object StubData {
         periodKey = "23AL"
       )
     )
-  )
+  )))
 
-  val firstPeriodNoCorrections: EtmpObligations = EtmpObligations(
+  val firstPeriodNoCorrections: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     referenceNumber = "IM9009999888",
     referenceType = "IOSS",
     obligationDetails = Seq(
@@ -232,5 +232,5 @@ object StubData {
         periodKey = "23AL"
       )
     )
-  )
+  )))
 }
