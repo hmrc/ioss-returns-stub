@@ -119,7 +119,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
     val idType = "IOSS"
     val regimeType = "IOSS"
-    val obligationFulfilmentStatus = "A"
+    val obligationFulfilmentStatus = "O"
     val referenceNumber = "IM9001234567"
     val firstDateOfYear = LocalDate.of(2021, 1, 1)
     val lastDateOfYear = LocalDate.of(2021, 12, 31)
@@ -132,7 +132,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
         idNumber = iossNumber,
         regimeType = regimeType,
         dateRange,
-        status = obligationFulfilmentStatus
+        status = Some(obligationFulfilmentStatus)
       ).url
     )
 
@@ -161,7 +161,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           idNumber = referenceNumber,
           regimeType = regimeType,
           dateRange,
-          status = obligationFulfilmentStatus
+          status = Some(obligationFulfilmentStatus)
         )(fakeRequestWithBody)
 
       status(result) shouldBe Status.OK
@@ -178,7 +178,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           idNumber = referenceNumber,
           regimeType = regimeType,
           dateRange,
-          status = obligationFulfilmentStatus
+          status = Some(obligationFulfilmentStatus)
         )(fakeRequestWithBody)
 
       status(result) shouldBe Status.BAD_REQUEST
