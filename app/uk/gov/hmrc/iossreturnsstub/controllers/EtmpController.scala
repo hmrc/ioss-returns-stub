@@ -85,7 +85,7 @@ class EtmpController @Inject()(
     }
   }
 
-  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: String): Action[AnyContent] = Action.async {
+  def getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: Option[String]): Action[AnyContent] = Action.async {
     implicit request =>
 
       logger.info(s"With request: $request ${request.headers} ${request.body}")
