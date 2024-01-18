@@ -19,7 +19,7 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc._
-import uk.gov.hmrc.iossreturnsstub.models.{DateRange, ObligationsDateRange}
+import uk.gov.hmrc.iossreturnsstub.models.ObligationsDateRange
 import uk.gov.hmrc.iossreturnsstub.models.etmp._
 import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
