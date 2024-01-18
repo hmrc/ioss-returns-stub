@@ -139,8 +139,6 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     "return a successful response" in {
 
       val successfulObligationsResponse = EtmpObligations(obligations = Seq(EtmpObligation(
-        referenceNumber = referenceNumber,
-        referenceType = idType,
         obligationDetails = Seq(
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,

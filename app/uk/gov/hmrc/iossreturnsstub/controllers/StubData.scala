@@ -144,8 +144,6 @@ object StubData {
   )
 
   val defaultObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
-    referenceNumber = "IM9001234567",
-    referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
@@ -159,8 +157,6 @@ object StubData {
   )))
 
   val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
-    referenceNumber = "IM9001234568",
-    referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
@@ -178,8 +174,6 @@ object StubData {
   )))
 
   val multipleCorrectionPeriodYears: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
-    referenceNumber = "IM9001234569",
-    referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
@@ -209,8 +203,6 @@ object StubData {
   )))
 
   val singleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
-    referenceNumber = "IM9008888888",
-    referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
@@ -224,8 +216,6 @@ object StubData {
   )))
 
   val firstPeriodNoCorrections: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
-    referenceNumber = "IM9009999888",
-    referenceType = "IOSS",
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Open,
