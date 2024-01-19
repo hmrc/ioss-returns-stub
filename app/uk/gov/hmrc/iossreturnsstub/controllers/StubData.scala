@@ -29,6 +29,8 @@ object StubData {
   val lastDay2 = LocalDate.of(2021, Month.DECEMBER, 31)
   val firstDay3 = LocalDate.of(2022, Month.JULY, 1)
   val lastDay3 = LocalDate.of(2022, Month.SEPTEMBER, 30)
+  val firstDay4 = LocalDate.of(2023, Month.NOVEMBER, 1)
+  val lastDay4 = LocalDate.of(2024, Month.JANUARY, 1)
 
   val items = Seq(
     Item(
@@ -40,17 +42,20 @@ object StubData {
     )
   )
 
+  val financialTransaction = FinancialTransaction(
+    chargeType = Some("G Ret FR EU-OMS"),
+    mainType = None,
+    taxPeriodFrom = Some(firstDay1),
+    taxPeriodTo = Some(lastDay1),
+    originalAmount = Some(BigDecimal(1500)),
+    outstandingAmount = Some(BigDecimal(500)),
+    clearedAmount = Some(BigDecimal(1000)),
+    items = Some(items)
+  )
+
   val financialTransactions = Seq(
-    FinancialTransaction(
-      chargeType = Some("G Ret FR EU-OMS"),
-      mainType = None,
-      taxPeriodFrom = Some(firstDay1),
-      taxPeriodTo = Some(lastDay1),
-      originalAmount = Some(BigDecimal(1500)),
-      outstandingAmount = Some(BigDecimal(500)),
-      clearedAmount = Some(BigDecimal(1000)),
-      items = Some(items)
-    ))
+    financialTransaction
+  )
 
   val allPaidItems = Seq(
     Item(

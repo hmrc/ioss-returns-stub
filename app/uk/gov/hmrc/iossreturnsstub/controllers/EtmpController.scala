@@ -39,12 +39,14 @@ class EtmpController @Inject()(
   implicit val ec: ExecutionContext = cc.executionContext
 
   def getVatReturn(iossNumber: String, period: String): Action[AnyContent] = Action.async { implicit request =>
+    val validPeriods = List("23AK", "23AL")
 
     logger.info(s"Here's the request: ${request} ${request.headers} ${request.body}")
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+      validPeriods.find(_ == period).map { validPeriod =>
       val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
-        periodKey = "23AK",
+        periodKey = validPeriod,
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
         returnPeriodTo = LocalDate.of(2023, 11, 30),
         goodsSupplied = Seq(
@@ -81,7 +83,11 @@ class EtmpController @Inject()(
       )
 
       Ok(Json.toJson(vatReturn)).toFuture
+    }.getOrElse {
+        logger.warn(s"period $period is not a valid period {${validPeriods.mkString(", ")}}")
 
+        NotFound(Json.toJson("")).toFuture
+      }
     }
   }
 
