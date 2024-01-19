@@ -60,10 +60,16 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
       val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
         returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
-        periodKey = "23AK",
+        periodKey = "23AL",
         returnPeriodFrom = LocalDate.of(2023, 12, 1),
         returnPeriodTo = LocalDate.of(2023, 12, 31),
         goodsSupplied = Seq(
+          EtmpVatReturnGoodsSupplied(
+            msOfConsumption = "DE",
+            vatRateType = EtmpVatRateType.StandardVatRate,
+            taxableAmountGBP = BigDecimal(12345.67),
+            vatAmountGBP = BigDecimal(2469.13)
+          ),
           EtmpVatReturnGoodsSupplied(
             msOfConsumption = "DE",
             vatRateType = EtmpVatRateType.StandardVatRate,
@@ -106,28 +112,28 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
           ),
           EtmpVatReturnCorrection(
-            periodKey = "23AJ",
-            periodFrom = LocalDate.of(2023, 10, 1).toString,
-            periodTo = LocalDate.of(2023, 10, 31).toString,
-            msOfConsumption = "FR",
+            periodKey = "23AH",
+            periodFrom = LocalDate.of(2023, 8, 1).toString,
+            periodTo = LocalDate.of(2023, 8, 31).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AI",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "DE",
             totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
             totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
           ),
           EtmpVatReturnCorrection(
             periodKey = "23AJ",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
+            periodFrom = LocalDate.of(2023, 10, 1).toString,
+            periodTo = LocalDate.of(2023, 10, 31).toString,
             msOfConsumption = "DE",
-            totalVATAmountCorrectionGBP = BigDecimal(1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(1856.09)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "ES",
-            totalVATAmountCorrectionGBP = BigDecimal(-1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(-1856.09)
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
           ),
           EtmpVatReturnCorrection(
             periodKey = "23AH",
@@ -167,14 +173,14 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             totalVATEUR = BigDecimal(1537.60)
           ),
           EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "ES",
-            totalVATDueGBP = BigDecimal(-2569.13),
-            totalVATEUR = BigDecimal(-2569.13)
-          ),
-          EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "IT",
+            msOfConsumption = "DE",
             totalVATDueGBP = BigDecimal(0),
             totalVATEUR = BigDecimal(0)
+          ),
+          EtmpVatReturnBalanceOfVatDue(
+            msOfConsumption = "FR",
+            totalVATDueGBP = BigDecimal(1397.30),
+            totalVATEUR = BigDecimal(1537.60)
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),

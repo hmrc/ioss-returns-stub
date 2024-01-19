@@ -92,52 +92,36 @@ class EtmpController @Inject()(
             totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
           ),
           EtmpVatReturnCorrection(
+            periodKey = "23AH",
+            periodFrom = LocalDate.of(2023, 8, 1).toString,
+            periodTo = LocalDate.of(2023, 8, 31).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AI",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AJ",
+            periodFrom = LocalDate.of(2023, 10, 1).toString,
+            periodTo = LocalDate.of(2023, 10, 31).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
             periodKey = "23AJ",
             periodFrom = LocalDate.of(2023, 10, 1).toString,
             periodTo = LocalDate.of(2023, 10, 31).toString,
             msOfConsumption = "FR",
             totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
             totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AJ",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "DE",
-            totalVATAmountCorrectionGBP = BigDecimal(1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(1856.09)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "ES",
-            totalVATAmountCorrectionGBP = BigDecimal(-1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(-1856.09)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "IT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AL",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "IT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AB",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "LT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
           )
         ),
         totalVATAmountFromCorrectionGBP = BigDecimal(-4000.00),
@@ -161,6 +145,11 @@ class EtmpController @Inject()(
             msOfConsumption = "IT",
             totalVATDueGBP = BigDecimal(0),
             totalVATEUR = BigDecimal(0)
+          ),
+          EtmpVatReturnBalanceOfVatDue(
+            msOfConsumption = "FR",
+            totalVATDueGBP = BigDecimal(1397.30),
+            totalVATEUR = BigDecimal(1537.60)
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
