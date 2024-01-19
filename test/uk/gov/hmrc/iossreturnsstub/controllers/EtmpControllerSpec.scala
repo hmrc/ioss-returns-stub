@@ -60,89 +60,74 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
       val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
         returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
-        periodKey = "23AK",
-        returnPeriodFrom = LocalDate.of(2023, 11, 1),
-        returnPeriodTo = LocalDate.of(2023, 11, 30),
+        periodKey = "23AL",
+        returnPeriodFrom = LocalDate.of(2023, 12, 1),
+        returnPeriodTo = LocalDate.of(2023, 12, 31),
         goodsSupplied = Seq(
+          EtmpVatReturnGoodsSupplied(
+            msOfConsumption = "DE",
+            vatRateType = EtmpVatRateType.StandardVatRate,
+            taxableAmountGBP = BigDecimal(12345.67),
+            vatAmountGBP = BigDecimal(2469.13)
+          ),
           EtmpVatReturnGoodsSupplied(
             msOfConsumption = "FR",
             vatRateType = EtmpVatRateType.ReducedVatRate,
-            taxableAmountGBP = BigDecimal(12345.67),
-            vatAmountGBP = BigDecimal(2469.13)
-          )
+            taxableAmountGBP = BigDecimal(23973.03),
+            vatAmountGBP = BigDecimal(2397.30)
+          ),
         ),
-        totalVATGoodsSuppliedGBP = BigDecimal(2469.13),
-        totalVATAmountPayable = BigDecimal(2469.13),
-        totalVATAmountPayableAllSpplied = BigDecimal(2469.13),
+        totalVATGoodsSuppliedGBP = BigDecimal(4866.43),
+        totalVATAmountPayable = BigDecimal(0),
+        totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
         correctionPreviousVATReturn = Seq(
+          EtmpVatReturnCorrection(
+            periodKey = "23AH",
+            periodFrom = LocalDate.of(2023, 8, 1).toString,
+            periodTo = LocalDate.of(2023, 8, 31).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AI",
+            periodFrom = LocalDate.of(2023, 9, 1).toString,
+            periodTo = LocalDate.of(2023, 9, 30).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
+          EtmpVatReturnCorrection(
+            periodKey = "23AJ",
+            periodFrom = LocalDate.of(2023, 10, 1).toString,
+            periodTo = LocalDate.of(2023, 10, 31).toString,
+            msOfConsumption = "DE",
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+          ),
           EtmpVatReturnCorrection(
             periodKey = "23AJ",
             periodFrom = LocalDate.of(2023, 10, 1).toString,
             periodTo = LocalDate.of(2023, 10, 31).toString,
             msOfConsumption = "FR",
-            totalVATAmountCorrectionGBP = BigDecimal(2469.13),
-            totalVATAmountCorrectionEUR = BigDecimal(2469.13)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AJ",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "DE",
-            totalVATAmountCorrectionGBP = BigDecimal(1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(1856.09)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "ES",
-            totalVATAmountCorrectionGBP = BigDecimal(-1856.09),
-            totalVATAmountCorrectionEUR = BigDecimal(-1856.09)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "IT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AL",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "IT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AB",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "LT",
-            totalVATAmountCorrectionGBP = BigDecimal(2356.34),
-            totalVATAmountCorrectionEUR = BigDecimal(2356.34)
+            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
           )
         ),
-        totalVATAmountFromCorrectionGBP = BigDecimal(100.00),
+        totalVATAmountFromCorrectionGBP = BigDecimal(-4000.00),
         balanceOfVATDueForMS = Seq(
           EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "FR",
-            totalVATDueGBP = BigDecimal(2569.13),
-            totalVATEUR = BigDecimal(2569.13)
-          ),
-          EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "ES",
-            totalVATDueGBP = BigDecimal(-2569.13),
-            totalVATEUR = BigDecimal(-2569.13)
-          ),
-          EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "IT",
+            msOfConsumption = "DE",
             totalVATDueGBP = BigDecimal(0),
             totalVATEUR = BigDecimal(0)
+          ),
+          EtmpVatReturnBalanceOfVatDue(
+            msOfConsumption = "FR",
+            totalVATDueGBP = BigDecimal(1397.30),
+            totalVATEUR = BigDecimal(1537.60)
           )
         ),
-        totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
+        totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
         paymentReference = "XI/IM9001234567.M1123"
       )
 
