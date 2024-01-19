@@ -147,6 +147,10 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Open,
             periodKey = "23AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "23AJ"
           )
         )
       )))

@@ -32,6 +32,11 @@ object StubData {
   val firstDay4 = LocalDate.of(2023, Month.NOVEMBER, 1)
   val lastDay4 = LocalDate.of(2024, Month.JANUARY, 1)
 
+  private val firstDayForOctober = LocalDate.of(2023, Month.OCTOBER, 1)
+  private val lastDayForOctober = LocalDate.of(2023, Month.OCTOBER, 31)
+  private val firstDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 1)
+  private val lastDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 30)
+
   val items = Seq(
     Item(
       amount = Some(BigDecimal(1000)),
@@ -42,20 +47,28 @@ object StubData {
     )
   )
 
-  val financialTransaction = FinancialTransaction(
-    chargeType = Some("G Ret FR EU-OMS"),
-    mainType = None,
-    taxPeriodFrom = Some(firstDay1),
-    taxPeriodTo = Some(lastDay1),
-    originalAmount = Some(BigDecimal(1500)),
-    outstandingAmount = Some(BigDecimal(500)),
-    clearedAmount = Some(BigDecimal(1000)),
-    items = Some(items)
-  )
-
   val financialTransactions = Seq(
-    financialTransaction
-  )
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayForOctober),
+      taxPeriodTo = Some(lastDayForOctober),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayForNovember),
+      taxPeriodTo = Some(lastDayForNovember),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ))
+
 
   val allPaidItems = Seq(
     Item(
@@ -151,12 +164,16 @@ object StubData {
   val defaultObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AK"
-      ),
-      EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Open,
         periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AK"
       )
     )
   )))

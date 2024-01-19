@@ -25,7 +25,8 @@ import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.LocalDate
+import java.time.{LocalDate, Month}
+import java.time.Month._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
@@ -39,14 +40,13 @@ class EtmpController @Inject()(
   implicit val ec: ExecutionContext = cc.executionContext
 
   def getVatReturn(iossNumber: String, period: String): Action[AnyContent] = Action.async { implicit request =>
-    val validPeriods = List("23AK", "23AL")
+    val referencePeriod = toReferencePeriod(period)
 
     logger.info(s"Here's the request: ${request} ${request.headers} ${request.body}")
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
-      validPeriods.find(_ == period).map { validPeriod =>
       val vatReturn = EtmpVatReturn(
-        returnReference = "XI/IM9001234567/2023.M11",
-        periodKey = validPeriod,
+        returnReference = s"XI/$iossNumber/$referencePeriod",
+        periodKey = period,
         returnPeriodFrom = LocalDate.of(2023, 11, 1),
         returnPeriodTo = LocalDate.of(2023, 11, 30),
         goodsSupplied = Seq(
@@ -79,15 +79,11 @@ class EtmpController @Inject()(
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(2569.13),
-        paymentReference = "XI/IM9001234567/2023.M11"
+        paymentReference = s"XI/$iossNumber/$referencePeriod"
       )
 
       Ok(Json.toJson(vatReturn)).toFuture
-    }.getOrElse {
-        logger.warn(s"period $period is not a valid period {${validPeriods.mkString(", ")}}")
 
-        NotFound(Json.toJson("")).toFuture
-      }
     }
   }
 
@@ -109,5 +105,34 @@ class EtmpController @Inject()(
 
         Ok(Json.toJson(obligationsResponse)).toFuture
       }
+  }
+
+  private def toReferencePeriod(etmpPeriod: String): String = {
+
+    val etmpYear = etmpPeriod.substring(0, 2)
+    val etmpMonth = etmpPeriod.substring(2, 4)
+
+    val month = etmpMonth match {
+      case "AA" => Month.JANUARY
+      case "AB" => Month.FEBRUARY
+      case "AC" => Month.MARCH
+      case "AD" => Month.APRIL
+      case "AE" => Month.MAY
+      case "AF" => Month.JUNE
+      case "AG" => Month.JULY
+      case "AH" => Month.AUGUST
+      case "AI" => Month.SEPTEMBER
+      case "AJ" => Month.OCTOBER
+      case "AK" => Month.NOVEMBER
+      case "AL" => Month.DECEMBER
+    }
+
+    val stringMonth = if(month.getValue < 10) {
+      s"0${month.getValue}"
+    } else {
+      month.getValue.toString
+    }
+
+    s"20$etmpYear.M$stringMonth"
   }
 }

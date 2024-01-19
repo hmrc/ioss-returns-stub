@@ -54,13 +54,10 @@ class FinancialDataController @Inject()(
     }
 
     val filteredFinancialTransactions = maybeFinancialTransactions.map { financialTransactions =>
-      val requestedYear = dateRange.toDate.getYear
-
       financialTransactions.filter { financialTransaction =>
-        financialTransaction.taxPeriodTo.map(_.getYear).contains(requestedYear)
+        financialTransaction.taxPeriodFrom.map(tpf => tpf.isAfter(dateRange.fromDate) || tpf.isEqual(dateRange.fromDate)).getOrElse(false)
       }
     }
-
     val response = successfulResponse.copy(financialTransactions = filteredFinancialTransactions)
 
     Future.successful(responseStatus match {
