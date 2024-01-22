@@ -47,18 +47,6 @@ class FinancialDataControllerSpec extends AnyWordSpec with Matchers {
     )
   )
 
-  private val financialTransactions = Seq(
-    FinancialTransaction(
-      chargeType = Some("G Ret FR EU-OMS"),
-      mainType = None,
-      taxPeriodFrom = Some(firstDay),
-      taxPeriodTo = Some(lastDay),
-      originalAmount = Some(BigDecimal(1500)),
-      outstandingAmount = Some(BigDecimal(500)),
-      clearedAmount = Some(BigDecimal(1000)),
-      items = Some(items)
-    ))
-
   private val somePaidItems = Seq(
     Item(
       amount = Some(BigDecimal(500)),
@@ -86,11 +74,16 @@ class FinancialDataControllerSpec extends AnyWordSpec with Matchers {
     idNumber = None,
     regimeType = None,
     processingDate = ZonedDateTime.now(stubClock),
-    financialTransactions = Some(financialTransactions)
+    financialTransactions = Some(StubData.financialTransactions)
   )
 
   "GET /financial-data" should {
     "return a successful FinancialDataResponse" in {
+      val dateRange = DateRange(LocalDate.of(2023, 1, 1), LocalDate.of(2023, 12, 31))
+      val fakeRequest = FakeRequest("GET", uk.gov.hmrc.iossreturnsstub.controllers.routes.FinancialDataController.getFinancialData("", "0", "", dateRange).url)
+
+      successfulResponse.copy(financialTransactions = Some(StubData.financialTransactions))
+
       val result = controller.getFinancialData(idType = "", idNumber = "012345678", regimeType = "", dateRange = dateRange)(fakeRequest)
       status(result) shouldBe Status.OK
       contentAsJson(result).validate[FinancialDataResponse] shouldBe JsSuccess(successfulResponse)

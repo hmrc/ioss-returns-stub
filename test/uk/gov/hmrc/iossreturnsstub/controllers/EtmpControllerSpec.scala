@@ -141,12 +141,16 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
       val successfulObligationsResponse = EtmpObligations(obligations = Seq(EtmpObligation(
         obligationDetails = Seq(
           EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "23AL"
+          ),
+          EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
             periodKey = "23AK"
           ),
           EtmpObligationDetails(
-            status = EtmpObligationsFulfilmentStatus.Open,
-            periodKey = "23AL"
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "23AJ"
           )
         )
       )))
