@@ -60,7 +60,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
       val vatReturn = EtmpVatReturn(
         returnReference = "XI/IM9001234567/2023.M11",
         returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
-        periodKey = "23AL",
+        periodKey = "23AK",
         returnPeriodFrom = LocalDate.of(2023, 12, 1),
         returnPeriodTo = LocalDate.of(2023, 12, 31),
         goodsSupplied = Seq(
