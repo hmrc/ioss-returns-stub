@@ -58,7 +58,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     "Return OK when valid" in {
 
       val vatReturn = EtmpVatReturn(
-        returnReference = "XI/IM9001234567/2023.M11",
+        returnReference = s"XI/$iossNumber/2023.M11",
         returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
         periodKey = "23AK",
         returnPeriodFrom = LocalDate.of(2023, 12, 1),
@@ -78,7 +78,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           ),
         ),
         totalVATGoodsSuppliedGBP = BigDecimal(4866.43),
-        totalVATAmountPayable = BigDecimal(0),
+        totalVATAmountPayable = BigDecimal(4866.43),
         totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
         correctionPreviousVATReturn = Seq(
           EtmpVatReturnCorrection(
@@ -128,7 +128,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
-        paymentReference = "XI/IM9001234567/2023.M11"
+        paymentReference = s"XI/$iossNumber/2023.M11"
       )
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
