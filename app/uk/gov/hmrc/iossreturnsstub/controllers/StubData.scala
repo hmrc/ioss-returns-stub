@@ -169,11 +169,11 @@ object StubData {
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AJ"
+        periodKey = "23AK"
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AK"
+        periodKey = "23AJ"
       )
     )
   )))

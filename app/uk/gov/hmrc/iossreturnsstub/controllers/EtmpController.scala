@@ -26,7 +26,6 @@ import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.{LocalDate, Month}
-import java.time.Month._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 

@@ -18,11 +18,10 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.iossreturnsstub.controllers.StubData.{financialTransaction, firstDay4, lastDay4}
 import uk.gov.hmrc.iossreturnsstub.models._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{Clock, LocalDate, ZoneId, ZonedDateTime}
+import java.time.{Clock, LocalDate, ZonedDateTime, ZoneId}
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
@@ -49,13 +48,12 @@ class FinancialDataController @Inject()(
       case '3' => (Ok, Some(StubData.notPaidFinancialTransactions))
       case '4' => (Ok, Some(StubData.multipleItemsNotPaidFinancialTransactions))
       case '5' => (NotFound, None)
-      case 'I' => (Ok, Some(Seq(financialTransaction.copy(taxPeriodFrom = Some(firstDay4), taxPeriodTo = Some(lastDay4)))))
       case _ => (Ok, successfulResponse.financialTransactions)
     }
 
     val filteredFinancialTransactions = maybeFinancialTransactions.map { financialTransactions =>
       financialTransactions.filter { financialTransaction =>
-        financialTransaction.taxPeriodFrom.map(tpf => tpf.isAfter(dateRange.fromDate) || tpf.isEqual(dateRange.fromDate)).getOrElse(false)
+        financialTransaction.taxPeriodFrom.exists(tpf => tpf.isAfter(dateRange.fromDate) || tpf.isEqual(dateRange.fromDate))
       }
     }
     val response = successfulResponse.copy(financialTransactions = filteredFinancialTransactions)
