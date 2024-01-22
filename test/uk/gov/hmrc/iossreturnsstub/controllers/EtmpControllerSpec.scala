@@ -184,7 +184,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           )
         ),
         totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
-        paymentReference = "XI/IM9001234567.M1123"
+        paymentReference = "XI/IM9001234567/2023.M11"
       )
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
