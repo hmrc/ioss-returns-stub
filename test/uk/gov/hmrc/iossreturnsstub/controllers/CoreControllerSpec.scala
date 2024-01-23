@@ -77,24 +77,12 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
           BigDecimal(5000),
           BigDecimal(1000),
           BigDecimal(1000),
-          BigDecimal(1000),
           List(CoreSupply(
             "GOODS",
             BigDecimal(10),
             "STANDARD",
             BigDecimal(10),
             BigDecimal(10)
-          )),
-          List(CoreMsestSupply(
-            Some("DE"),
-            None,
-            List(CoreSupply(
-              "GOODS",
-              BigDecimal(10),
-              "STANDARD",
-              BigDecimal(10),
-              BigDecimal(100)
-            ))
           )),
           List(CoreCorrection(
             CorePeriod(2021, 2),
@@ -135,24 +123,12 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
           BigDecimal(5000),
           BigDecimal(1000),
           BigDecimal(1000),
-          BigDecimal(1000),
           List(CoreSupply(
             "GOODS",
             BigDecimal(10),
             "STANDARD",
             BigDecimal(10),
             BigDecimal(10)
-          )),
-          List(CoreMsestSupply(
-            Some("DE"),
-            None,
-            List(CoreSupply(
-              "GOODS",
-              BigDecimal(10),
-              "STANDARD",
-              BigDecimal(10),
-              BigDecimal(100)
-            ))
           )),
           List(CoreCorrection(
             CorePeriod(2021, 2),
@@ -206,7 +182,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |    "msconCountryCode" : "DE",
                             |    "balanceOfVatDueGBP" : 5000.123456789,
                             |    "grandTotalMsidGoodsGBP" : 1000.123456789,
-                            |    "grandTotalMsestGoodsGBP" : 1000.123456789,
                             |    "correctionsTotalGBP" : 1000.123456789,
                             |    "msidSupplies" : [ {
                             |      "supplyType" : "GOODS",
@@ -214,16 +189,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |      "vatRateType" : "STANDARD",
                             |      "taxableAmountGBP" : 10.123456789,
                             |      "vatAmountGBP" : 10.123456789
-                            |    } ],
-                            |    "msestSupplies" : [ {
-                            |      "countryCode" : "DE",
-                            |      "supplies" : [ {
-                            |        "supplyType" : "GOODS",
-                            |        "vatRate" : 10,
-                            |        "vatRateType" : "STANDARD",
-                            |        "taxableAmountGBP" : 10.123456789,
-                            |        "vatAmountGBP" : 100.123456789
-                            |      } ]
                             |    } ],
                             |    "corrections" : [ {
                             |      "period" : {
@@ -269,7 +234,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |    "msconCountryCode" : "DE",
                             |    "balanceOfVatDueGBP" : 5000.1,
                             |    "grandTotalMsidGoodsGBP" : 1000.1,
-                            |    "grandTotalMsestGoodsGBP" : 1000.1,
                             |    "correctionsTotalGBP" : 1000.1,
                             |    "msidSupplies" : [ {
                             |      "supplyType" : "GOODS",
@@ -277,16 +241,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |      "vatRateType" : "STANDARD",
                             |      "taxableAmountGBP" : 10.1,
                             |      "vatAmountGBP" : 10.1
-                            |    } ],
-                            |    "msestSupplies" : [ {
-                            |      "countryCode" : "DE",
-                            |      "supplies" : [ {
-                            |        "supplyType" : "GOODS",
-                            |        "vatRate" : 10,
-                            |        "vatRateType" : "STANDARD",
-                            |        "taxableAmountGBP" : 10.1,
-                            |        "vatAmountGBP" : 100.1
-                            |      } ]
                             |    } ],
                             |    "corrections" : [ {
                             |      "period" : {
@@ -327,7 +281,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |    "msconCountryCode" : "DE",
                             |    "balanceOfVatDueGBP" : 5000.10,
                             |    "grandTotalMsidGoodsGBP" : 1000.10,
-                            |    "grandTotalMsestGoodsGBP" : 1000.10,
                             |    "correctionsTotalGBP" : 1000.10,
                             |    "msidSupplies" : [ {
                             |      "supplyType" : "GOODS",
@@ -335,16 +288,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |      "vatRateType" : "STANDARD",
                             |      "taxableAmountGBP" : 10.10,
                             |      "vatAmountGBP" : 10.10
-                            |    } ],
-                            |    "msestSupplies" : [ {
-                            |      "countryCode" : "DE",
-                            |      "supplies" : [ {
-                            |        "supplyType" : "GOODS",
-                            |        "vatRate" : 10,
-                            |        "vatRateType" : "STANDARD",
-                            |        "taxableAmountGBP" : 10.10,
-                            |        "vatAmountGBP" : 100.10
-                            |      } ]
                             |    } ],
                             |    "corrections" : [ {
                             |      "period" : {
@@ -385,10 +328,8 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |    "msconCountryCode" : "DE",
                             |    "balanceOfVatDueGBP" : -10,
                             |    "grandTotalMsidGoodsGBP" : 0,
-                            |    "grandTotalMsestGoodsGBP" : 0,
                             |    "correctionsTotalGBP" : -10,
                             |    "msidSupplies" : [],
-                            |    "msestSupplies" : [],
                             |    "corrections" : [ {
                             |      "period" : {
                             |        "year" : 2021,
@@ -427,7 +368,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |    "msconCountryCode" : "DE",
                             |    "balanceOfVatDueGBP" : 5000.12,
                             |    "grandTotalMsidGoodsGBP" : 1000.12,
-                            |    "grandTotalMsestGoodsGBP" : 1000.12,
                             |    "correctionsTotalGBP" : 1000.12,
                             |    "msidSupplies" : [ {
                             |      "supplyType" : "GOODS",
@@ -435,16 +375,6 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
                             |      "vatRateType" : "STANDARD",
                             |      "taxableAmountGBP" : 10.12,
                             |      "vatAmountGBP" : 10.12
-                            |    } ],
-                            |    "msestSupplies" : [ {
-                            |      "countryCode" : "DE",
-                            |      "supplies" : [ {
-                            |        "supplyType" : "GOODS",
-                            |        "vatRate" : 10.001,
-                            |        "vatRateType" : "STANDARD",
-                            |        "taxableAmountGBP" : 10.12,
-                            |        "vatAmountGBP" : 100.12
-                            |      } ]
                             |    } ],
                             |    "corrections" : [ {
                             |      "period" : {
@@ -488,24 +418,12 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
           BigDecimal(5000),
           BigDecimal(1000),
           BigDecimal(1000),
-          BigDecimal(1000),
           List(CoreSupply(
             "GOODS",
             BigDecimal(10),
             "STANDARD",
             BigDecimal(10),
             BigDecimal(10)
-          )),
-          List(CoreMsestSupply(
-            Some("DE"),
-            None,
-            List(CoreSupply(
-              "GOODS",
-              BigDecimal(10),
-              "STANDARD",
-              BigDecimal(10),
-              BigDecimal(100)
-            ))
           )),
           List(CoreCorrection(
             CorePeriod(2021, 2),
