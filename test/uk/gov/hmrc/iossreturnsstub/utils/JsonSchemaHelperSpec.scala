@@ -62,24 +62,12 @@ class JsonSchemaHelperSpec extends AnyFreeSpec with ScalaFutures with Matchers {
           BigDecimal(5000),
           BigDecimal(1000),
           BigDecimal(1000),
-          BigDecimal(1000),
           List(CoreSupply(
             "GOODS",
             BigDecimal(10),
             "STANDARD",
             BigDecimal(10),
             BigDecimal(10)
-          )),
-          List(CoreMsestSupply(
-            Some("DE"),
-            None,
-            List(CoreSupply(
-              "GOODS",
-              BigDecimal(10),
-              "STANDARD",
-              BigDecimal(10),
-              BigDecimal(100)
-            ))
           )),
           List(CoreCorrection(
             CorePeriod(2021, 2),

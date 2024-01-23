@@ -158,10 +158,8 @@ case class CoreMsconSupply(
                             msconCountryCode: String,
                             balanceOfVatDueGBP: BigDecimal,
                             grandTotalMsidGoodsGBP: BigDecimal,
-                            grandTotalMsestGoodsGBP: BigDecimal,
                             correctionsTotalGBP: BigDecimal,
                             msidSupplies: List[CoreSupply],
-                            msestSupplies: List[CoreMsestSupply],
                             corrections: List[CoreCorrection]
                           )
 
@@ -172,20 +170,16 @@ object CoreMsconSupply {
       (__ \ "msconCountryCode").read[String] and
         (__ \ "balanceOfVatDueGBP").read[BigDecimal](currencyAllowNegativeRead) and
         (__ \ "grandTotalMsidGoodsGBP").read[BigDecimal](currencyRead) and
-        (__ \ "grandTotalMsestGoodsGBP").read[BigDecimal](currencyRead) and
         (__ \ "correctionsTotalGBP").read[BigDecimal](currencyAllowNegativeRead) and
         (__ \ "msidSupplies").read[List[CoreSupply]] and
-        (__ \ "msestSupplies").read[List[CoreMsestSupply]] and
         (__ \ "corrections").read[List[CoreCorrection]]
       ) (CoreMsconSupply.apply _),
     (
       (__ \ "msconCountryCode").write[String] and
         (__ \ "balanceOfVatDueGBP").write[BigDecimal] and
         (__ \ "grandTotalMsidGoodsGBP").write[BigDecimal] and
-        (__ \ "grandTotalMsestGoodsGBP").write[BigDecimal] and
         (__ \ "correctionsTotalGBP").write[BigDecimal] and
         (__ \ "msidSupplies").write[List[CoreSupply]] and
-        (__ \ "msestSupplies").write[List[CoreMsestSupply]] and
         (__ \ "corrections").write[List[CoreCorrection]]
       ) (unlift(CoreMsconSupply.unapply))
   )
