@@ -18,10 +18,11 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import uk.gov.hmrc.iossreturnsstub.controllers.StubData._
 import uk.gov.hmrc.iossreturnsstub.models._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{Clock, LocalDate, ZonedDateTime, ZoneId}
+import java.time.{Clock, LocalDate, ZoneId, ZonedDateTime}
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
@@ -42,13 +43,15 @@ class FinancialDataController @Inject()(
   )
 
   def getFinancialData(idType: String, idNumber: String, regimeType: String, dateRange: DateRange): Action[AnyContent] = Action.async {
-    val (responseStatus, maybeFinancialTransactions) = idNumber.head match {
-      case '1' => (Ok, Some(StubData.allPaidFinancialTransactions))
-      case '2' => (Ok, Some(StubData.somePaidFinancialTransactions))
-      case '3' => (Ok, Some(StubData.notPaidFinancialTransactions))
-      case '4' => (Ok, Some(StubData.multipleItemsNotPaidFinancialTransactions))
-      case '5' => (NotFound, None)
-      case _ => (Ok, successfulResponse.financialTransactions)
+    val (responseStatus, maybeFinancialTransactions) = idNumber match {
+      case "IM9009999888" => (Ok, Some(Seq.empty)) //Single return, not submitted yet therefore no payments
+      case "IM9008888888" => (Ok, Some(singleOutstandingPayment)) //Single return, partially paid
+      case "IM9008888887" => (Ok, Some(singleReturnFullyPaid)) //Single return, fully paid
+      case "IM9008888886" => (Ok, Some(threeReturnsTwoOutstandingOnePaid)) //Three returns submitted, one due, one overdue and one paid
+      case "IM9008888885" => (Ok, Some(oneReturnWithOutstanding)) //One return submitted that's due payment
+      case "IM9008888884" => (Ok, Some(threeReturnsOnePartialOneUnpaidOnePaid)) //Three returns submitted, one due, one overdue. One fully paid, one partial and one unpaid
+      case "IM9001231231" => (NotFound, None) //Error with payments API
+      case _ => (Ok, successfulResponse.financialTransactions) //Two returns, both with outstanding payments
     }
 
     val filteredFinancialTransactions = maybeFinancialTransactions.map { financialTransactions =>

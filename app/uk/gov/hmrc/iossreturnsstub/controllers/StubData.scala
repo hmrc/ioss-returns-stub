@@ -20,22 +20,23 @@ import uk.gov.hmrc.iossreturnsstub.models._
 import uk.gov.hmrc.iossreturnsstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus}
 
 import java.time.{LocalDate, Month}
+import java.time.Month._
 
 object StubData {
-
-  val firstDay1 = LocalDate.of(2021, Month.JULY, 1)
-  val lastDay1 = LocalDate.of(2021, Month.SEPTEMBER, 30)
-  val firstDay2 = LocalDate.of(2021, Month.OCTOBER, 1)
-  val lastDay2 = LocalDate.of(2021, Month.DECEMBER, 31)
-  val firstDay3 = LocalDate.of(2022, Month.JULY, 1)
-  val lastDay3 = LocalDate.of(2022, Month.SEPTEMBER, 30)
-  val firstDay4 = LocalDate.of(2023, Month.NOVEMBER, 1)
-  val lastDay4 = LocalDate.of(2024, Month.JANUARY, 1)
 
   private val firstDayForOctober = LocalDate.of(2023, Month.OCTOBER, 1)
   private val lastDayForOctober = LocalDate.of(2023, Month.OCTOBER, 31)
   private val firstDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 1)
   private val lastDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 30)
+
+  //  private val firstDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1)
+  //  private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfThreeMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1)
+  private val lastDayOfThreeMonthsAgoPeriod = LocalDate.now().minusMonths(2).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfTwoMonthsAgoPeriod = LocalDate.now().minusMonths(2).withDayOfMonth(1)
+  private val lastDayOfTwoMonthsAgoPeriod = LocalDate.now().minusMonths(1).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfOneMonthAgoPeriod = LocalDate.now().minusMonths(1).withDayOfMonth(1)
+  private val lastDayOfOneMonthAgoPeriod = LocalDate.now().withDayOfMonth(1).minusDays(1)
 
   val items = Seq(
     Item(
@@ -67,99 +68,113 @@ object StubData {
       outstandingAmount = Some(BigDecimal(500)),
       clearedAmount = Some(BigDecimal(1000)),
       items = Some(items)
-    ))
-
-
-  val allPaidItems = Seq(
-    Item(
-      amount = Some(BigDecimal(1500)),
-      clearingReason = Some("01"),
-      paymentReference = Some("a"),
-      paymentAmount = Some(BigDecimal(1500)),
-      paymentMethod = Some("A")
     )
   )
 
-  val allPaidFinancialTransactions = Seq(
+  val singleOutstandingPayment = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDay1),
-      taxPeriodTo = Some(lastDay1),
+      taxPeriodFrom = Some(firstDayForNovember),
+      taxPeriodTo = Some(lastDayForNovember),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
+  val singleReturnFullyPaid = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayForNovember),
+      taxPeriodTo = Some(lastDayForNovember),
       originalAmount = Some(BigDecimal(1500)),
       outstandingAmount = Some(BigDecimal(0)),
       clearedAmount = Some(BigDecimal(1500)),
-      items = Some(allPaidItems)
+      items = Some(items)
     )
   )
 
-  val somePaidItems = Seq(
-    Item(
-      amount = Some(BigDecimal(500)),
-      clearingReason = Some("01"),
-      paymentReference = Some("a"),
-      paymentAmount = Some(BigDecimal(500)),
-      paymentMethod = Some("A")
-    )
-  )
-  val somePaidFinancialTransactions = Seq(
+  val threeReturnsTwoOutstandingOnePaid = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDay1),
-      taxPeriodTo = Some(lastDay1),
+      taxPeriodFrom = Some(firstDayOfThreeMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfThreeMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(1500)),
-      outstandingAmount = Some(BigDecimal(1000)),
-      clearedAmount = Some(BigDecimal(500)),
-      items = Some(somePaidItems)
-    )
-  )
-
-  val multipleItemsNotPaidFinancialTransactions = Seq(
-    FinancialTransaction(
-      chargeType = Some("G Ret FR EU-OMS"),
-      mainType = None,
-      taxPeriodFrom = Some(firstDay1),
-      taxPeriodTo = Some(lastDay1),
-      originalAmount = Some(BigDecimal(1500)),
-      outstandingAmount = Some(BigDecimal(1000)),
-      clearedAmount = Some(BigDecimal(500)),
-      items = Some(somePaidItems)
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
     ),
     FinancialTransaction(
-      chargeType = Some("G Ret AT EU-OMS"),
+      chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDay2),
-      taxPeriodTo = Some(lastDay2),
+      taxPeriodFrom = Some(firstDayOfTwoMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfTwoMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfOneMonthAgoPeriod),
+      taxPeriodTo = Some(lastDayOfOneMonthAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOnePartialOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfThreeMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfThreeMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(1500)),
       outstandingAmount = Some(BigDecimal(1500)),
       clearedAmount = Some(BigDecimal(0)),
-      items = None
+      items = Some(items)
     ),
-    FinancialTransaction(
-      chargeType = Some("G Ret ES EU-OMS"),
-      mainType = None,
-      taxPeriodFrom = Some(firstDay3),
-      taxPeriodTo = Some(lastDay3),
-      originalAmount = Some(BigDecimal(2500.99)),
-      outstandingAmount = Some(BigDecimal(2500.99)),
-      clearedAmount = Some(BigDecimal(0)),
-      items = None
-    )
-  )
-
-  val notPaidFinancialTransactions = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDay1),
-      taxPeriodTo = Some(lastDay1),
+      taxPeriodFrom = Some(firstDayOfTwoMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfTwoMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(1500)),
-      outstandingAmount = Some(BigDecimal(1500)),
-      clearedAmount = Some(BigDecimal(0)),
-      items = None
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfOneMonthAgoPeriod),
+      taxPeriodTo = Some(lastDayOfOneMonthAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
     )
   )
+
+  val oneReturnWithOutstanding = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfOneMonthAgoPeriod),
+      taxPeriodTo = Some(lastDayOfOneMonthAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ))
+
 
   val defaultObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
@@ -245,4 +260,68 @@ object StubData {
       )
     )
   )))
+
+  val previousThreeMonthsSubmittedPeriods: EtmpObligations = {
+    val threeMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(3))
+    val twoMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
+    val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ))
+    )
+  }
+
+  val previousMonthSubmittedPeriod: EtmpObligations = {
+    val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ))
+    )
+  }
+
+  private def getEtmpStringFromDate(date: LocalDate): String = {
+    s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"
+  }
+
+  private def toEtmpYearString(year: Int): String =
+    year.toString.substring(2)
+
+  private def toEtmpMonthString(month: Month): String = {
+    month match {
+      case JANUARY => "AA"
+      case FEBRUARY => "AB"
+      case MARCH => "AC"
+      case APRIL => "AD"
+      case MAY => "AE"
+      case JUNE => "AF"
+      case JULY => "AG"
+      case AUGUST => "AH"
+      case SEPTEMBER => "AI"
+      case OCTOBER => "AJ"
+      case NOVEMBER => "AK"
+      case DECEMBER => "AL"
+    }
+  }
 }
