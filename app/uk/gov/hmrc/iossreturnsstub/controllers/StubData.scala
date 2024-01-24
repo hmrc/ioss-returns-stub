@@ -29,8 +29,6 @@ object StubData {
   private val firstDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 1)
   private val lastDayForNovember = LocalDate.of(2023, Month.NOVEMBER, 30)
 
-  //  private val firstDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1)
-  //  private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1).minusDays(1)
   private val firstDayOfThreeMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1)
   private val lastDayOfThreeMonthsAgoPeriod = LocalDate.now().minusMonths(2).withDayOfMonth(1).minusDays(1)
   private val firstDayOfTwoMonthsAgoPeriod = LocalDate.now().minusMonths(2).withDayOfMonth(1)
