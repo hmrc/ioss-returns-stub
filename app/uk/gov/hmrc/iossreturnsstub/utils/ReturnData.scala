@@ -348,6 +348,85 @@ object ReturnData {
     )
   }
 
+  def vatReturnPaid(iossNumber: String, period: String): EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod(period)
+
+    EtmpVatReturn(
+      returnReference = s"XI/$iossNumber/$referencePeriod",
+      returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
+      periodKey = period,
+      returnPeriodFrom = LocalDate.of(2023, 12, 1),
+      returnPeriodTo = LocalDate.of(2023, 12, 31),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(12345.67),
+          vatAmountGBP = BigDecimal(2469.13)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(23973.03),
+          vatAmountGBP = BigDecimal(2397.30)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(4866.43),
+      totalVATAmountPayable = BigDecimal(4866.43),
+      totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
+      correctionPreviousVATReturn = Seq(
+        EtmpVatReturnCorrection(
+          periodKey = "23AH",
+          periodFrom = LocalDate.of(2023, 8, 1).toString,
+          periodTo = LocalDate.of(2023, 8, 31).toString,
+          msOfConsumption = "DE",
+          totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+        ),
+        EtmpVatReturnCorrection(
+          periodKey = "23AI",
+          periodFrom = LocalDate.of(2023, 9, 1).toString,
+          periodTo = LocalDate.of(2023, 9, 30).toString,
+          msOfConsumption = "DE",
+          totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+        ),
+        EtmpVatReturnCorrection(
+          periodKey = "23AJ",
+          periodFrom = LocalDate.of(2023, 10, 1).toString,
+          periodTo = LocalDate.of(2023, 10, 31).toString,
+          msOfConsumption = "DE",
+          totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+        ),
+        EtmpVatReturnCorrection(
+          periodKey = "23AJ",
+          periodFrom = LocalDate.of(2023, 10, 1).toString,
+          periodTo = LocalDate.of(2023, 10, 31).toString,
+          msOfConsumption = "FR",
+          totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+        )
+      ),
+      totalVATAmountFromCorrectionGBP = BigDecimal(-4000.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(0),
+          totalVATEUR = BigDecimal(0)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(1397.30),
+          totalVATEUR = BigDecimal(1537.60)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(4866.43),
+      paymentReference = s"XI/$iossNumber/$referencePeriod"
+    )
+  }
+
+
   private def toReferencePeriod(etmpPeriod: String): String = {
 
     val etmpYear = etmpPeriod.substring(0, 2)

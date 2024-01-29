@@ -49,6 +49,7 @@ class EtmpController @Inject()(
         case "IM9004444444" => salesToEuNoCorrectionsReturn(iossNumber, period)
         case "IM9005555555" => salesToEuWithPositiveCorrectionsReturn(iossNumber, period)
         case "IM9006666666" => noSalesToEuWithPositiveAndNegativeCorrectionsReturn(iossNumber, period)
+//        case "IM9008888884" => vatReturnPaid(iossNumber, period)
         case _ => standardVatReturn(iossNumber, period)
       }
 
@@ -68,7 +69,8 @@ class EtmpController @Inject()(
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9008888888" | "IM9008888887" => StubData.singleCorrectionPeriods
           case "IM9009999888" => StubData.firstPeriodNoCorrections
-          case "IM9008888886" | "IM9008888884" => StubData.previousThreeMonthsSubmittedPeriods
+          case "IM9008888886" | "IM9008888884" | "IM9008888883" => StubData.previousThreeMonthsSubmittedPeriods
+          case "IM9008888882" => StubData.previousSixMonthsSubmittedPeriods
           case "IM9008888885" => StubData.previousMonthSubmittedPeriod
           case _ => StubData.defaultObligationsResponse
         }
