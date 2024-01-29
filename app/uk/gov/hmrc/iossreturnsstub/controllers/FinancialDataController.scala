@@ -45,6 +45,7 @@ class FinancialDataController @Inject()(
   def getFinancialData(idType: String, idNumber: String, regimeType: String, dateRange: DateRange): Action[AnyContent] = Action.async {
     val (responseStatus, maybeFinancialTransactions) = idNumber match {
       case "IM9009999888" => (Ok, Some(Seq.empty)) //Single return, not submitted yet therefore no payments
+      case "IM9003333333" => (Ok, Some(Seq.empty)) //Nil return so no payments required
       case "IM9008888888" => (Ok, Some(singleOutstandingPayment)) //Single return, partially paid
       case "IM9008888887" => (Ok, Some(singleReturnFullyPaid)) //Single return, fully paid
       case "IM9008888886" => (Ok, Some(threeReturnsTwoOutstandingOnePaid)) //Three returns submitted, one due, one overdue and one paid
