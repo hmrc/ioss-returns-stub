@@ -161,6 +161,30 @@ object StubData {
     )
   )
 
+  val threeReturnsOneUnknownOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfThreeMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfThreeMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(1500)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfTwoMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfTwoMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    )
+  )
+
+
   val oneReturnWithOutstanding = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
@@ -278,6 +302,46 @@ object StubData {
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
             periodKey = oneMonthAgoPeriod
+          )
+        )
+      ))
+    )
+  }
+
+  val sixMonthsAcrossTwoYearsSubmittedPeriods: EtmpObligations = {
+    val october2022Period = getEtmpStringFromDate(LocalDate.of(2022, 10, 31))
+    val november2022Period = getEtmpStringFromDate(LocalDate.of(2022, 11, 30))
+    val december2022Period = getEtmpStringFromDate(LocalDate.of(2022, 12, 31))
+    val october2023Period = getEtmpStringFromDate(LocalDate.of(2023, 10, 31))
+    val november2023Period = getEtmpStringFromDate(LocalDate.of(2023, 11, 30))
+    val december2023Period = getEtmpStringFromDate(LocalDate.of(2023, 12, 31))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = october2022Period
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = november2022Period
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = december2022Period
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = october2023Period
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = november2023Period
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = december2023Period
           )
         )
       ))
