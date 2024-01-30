@@ -308,40 +308,40 @@ object StubData {
     )
   }
 
-  val previousSixMonthsSubmittedPeriods: EtmpObligations = {
-    val fourteenMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(14))
-    val thirteenMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(13))
-    val twelveMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(12))
-    val threeMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(3))
-    val twoMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
-    val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
+  val sixMonthsAcrossTwoYearsSubmittedPeriods: EtmpObligations = {
+    val october2022Period = getEtmpStringFromDate(LocalDate.of(2022, 10, 31))
+    val november2022Period = getEtmpStringFromDate(LocalDate.of(2022, 11, 30))
+    val december2022Period = getEtmpStringFromDate(LocalDate.of(2022, 12, 31))
+    val october2023Period = getEtmpStringFromDate(LocalDate.of(2023, 10, 31))
+    val november2023Period = getEtmpStringFromDate(LocalDate.of(2023, 11, 30))
+    val december2023Period = getEtmpStringFromDate(LocalDate.of(2023, 12, 31))
 
     EtmpObligations(obligations =
       Seq(EtmpObligation(
         obligationDetails = Seq(
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = fourteenMonthsAgoPeriod
+            periodKey = october2022Period
           ),
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = thirteenMonthsAgoPeriod
+            periodKey = november2022Period
           ),
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = twelveMonthsAgoPeriod
+            periodKey = december2022Period
           ),
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = threeMonthsAgoPeriod
+            periodKey = october2023Period
           ),
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = twoMonthsAgoPeriod
+            periodKey = november2023Period
           ),
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Fulfilled,
-            periodKey = oneMonthAgoPeriod
+            periodKey = december2023Period
           )
         )
       ))
