@@ -51,7 +51,8 @@ class FinancialDataController @Inject()(
       case "IM9008888886" => (Ok, Some(threeReturnsTwoOutstandingOnePaid)) //Three returns submitted, one due, one overdue and one paid
       case "IM9008888885" => (Ok, Some(oneReturnWithOutstanding)) //One return submitted that's due payment
       case "IM9008888884" => (Ok, Some(threeReturnsOnePartialOneUnpaidOnePaid)) //Three returns submitted, one due, one overdue. One fully paid, one partial and one unpaid
-      case "IM9001231231" => (NotFound, None) //Error with payments API
+      case "IM9001231231" => (NotFound, None) //Error (not found) with payments API
+      case "IM9001231232" => (ServiceUnavailable, None) //Error (service unavailable) with payments API
       case "IM9008888883" => (Ok, Some(threeReturnsOneUnknownOneUnpaidOnePaid)) //Three returns submitted, one due, one overdue. One fully paid, one partial and one unpaid
       case _ => (Ok, successfulResponse.financialTransactions) //Two returns, both with outstanding payments
     }
@@ -65,7 +66,7 @@ class FinancialDataController @Inject()(
 
     Future.successful(responseStatus match {
       case Ok => Ok(Json.toJson(response))
-      case NotFound => NotFound
+      case status => status
     })
   }
 }
