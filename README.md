@@ -1,7 +1,7 @@
 
 # ioss-returns-stub
 
-This is the repository for Import One Stop Shop REturns Stub, it is used by the Import One Stop Shop Returns Frontend.
+This is the repository for Import One Stop Shop Returns Stub, it is used by the Import One Stop Shop Returns Frontend.
 This application replaces the call to various ETMP and Core APIs so that we are able to test submitting VAT returns,
 as well as retrieving latest returns and financial data information.
 
