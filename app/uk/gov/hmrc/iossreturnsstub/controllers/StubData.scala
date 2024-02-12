@@ -128,6 +128,69 @@ object StubData {
     )
   )
 
+  val sixReturnsOutstanding = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.JULY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.JULY, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.AUGUST, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.AUGUST, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.SEPTEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.SEPTEMBER, 30)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.OCTOBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.OCTOBER, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.NOVEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.NOVEMBER, 30)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.DECEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.DECEMBER, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
   val threeReturnsOnePartialOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
@@ -465,6 +528,179 @@ object StubData {
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "20AL"
+      )
+    )
+  )))
+
+  val moreThanThreeYearsOpenReturns: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AC"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AD"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AE"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AF"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AG"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AH"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AI"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "23AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AC"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AD"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AE"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AF"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AG"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AH"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AI"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "22AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AC"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AD"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AE"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AF"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AG"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AH"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AI"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "21AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "20AG"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "20AH"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "20AI"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "20AJ"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "20AK"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
         periodKey = "20AL"
       )
     )
