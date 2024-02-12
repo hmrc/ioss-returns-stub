@@ -128,6 +128,69 @@ object StubData {
     )
   )
 
+  val sixReturnsOutstanding = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.JULY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.JULY, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.AUGUST, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.AUGUST, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.SEPTEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.SEPTEMBER, 30)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.OCTOBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.OCTOBER, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.NOVEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.NOVEMBER, 30)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2020, Month.DECEMBER, 1)),
+      taxPeriodTo = Some(LocalDate.of(2020, Month.DECEMBER, 31)),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
   val threeReturnsOnePartialOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
