@@ -44,11 +44,14 @@ class EtmpController @Inject()(
 
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
-      val vatReturn = iossNumber match {
-        case "IM9003333333" => nilReturn(iossNumber, period)
-        case "IM9004444444" => salesToEuNoCorrectionsReturn(iossNumber, period)
-        case "IM9005555555" => salesToEuWithPositiveCorrectionsReturn(iossNumber, period)
-        case "IM9006666666" => noSalesToEuWithPositiveAndNegativeCorrectionsReturn(iossNumber, period)
+      val vatReturn = (iossNumber, period) match {
+        case ("IM9003333333", _) => nilReturn(iossNumber, period)
+        case ("IM9004444444", _) => salesToEuNoCorrectionsReturn(iossNumber, period)
+        case ("IM9005555555", _) => salesToEuWithPositiveCorrectionsReturn(iossNumber, period)
+        case ("IM9006666666", _) => noSalesToEuWithPositiveAndNegativeCorrectionsReturn(iossNumber, period)
+        case ("IM9001233211", "23AJ") => correctionsScenarioOctoberReturn
+        case ("IM9001233211", "23AK") => correctionsScenarioNovemberReturn
+        case ("IM9001233211", "23AL") => correctionsScenarioDecemberReturn
         case _ => standardVatReturn(iossNumber, period)
       }
 
@@ -64,7 +67,7 @@ class EtmpController @Inject()(
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
         def generateObligations(idNumber: String): EtmpObligations = idNumber match {
-          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9003999993" | "IM9059999994" => StubData.multipleCorrectionPeriods
+          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9003999993" | "IM9059999994" | "IM9001233211" => StubData.multipleCorrectionPeriods
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
