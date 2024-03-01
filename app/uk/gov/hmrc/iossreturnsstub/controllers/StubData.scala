@@ -753,6 +753,55 @@ object StubData {
     )
   }
 
+  val previousFourToSixMonthsSubmittedPeriods: EtmpObligations = {
+    val sixMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(6))
+    val fiveMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(5))
+    val fourMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(4))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sixMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = fiveMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = fourMonthAgoPeriod
+          )
+        )
+      ))
+    )
+  }
+  val previousSevenToNineMonthsSubmittedPeriods: EtmpObligations = {
+    val nineMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(9))
+    val eightMonthsAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(8))
+    val sevenMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(7))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = nineMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = eightMonthsAgoPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sevenMonthAgoPeriod
+          )
+        )
+      ))
+    )
+  }
+
   val sixMonthsAcrossTwoYearsSubmittedPeriods: EtmpObligations = {
     val october2022Period = getEtmpStringFromDate(LocalDate.of(2022, 10, 31))
     val november2022Period = getEtmpStringFromDate(LocalDate.of(2022, 11, 30))
