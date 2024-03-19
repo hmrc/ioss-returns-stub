@@ -78,6 +78,8 @@ class EtmpController @Inject()(
           case "IM9007230001" => StubData.previousSevenToNineMonthsSubmittedPeriods
           case "IM9008888882" => StubData.sixMonthsAcrossTwoYearsSubmittedPeriods
           case "IM9008888885" => StubData.previousMonthSubmittedPeriod
+          case "IM9005999997" => StubData.firstReturnAfterTransferringFromAnotherMSID
+          case "IM9009999555" => StubData.returnsBeforeTransferringToAnotherMSID
           case _ => StubData.defaultObligationsResponse
         }
 
