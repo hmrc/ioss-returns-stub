@@ -72,12 +72,16 @@ class EtmpController @Inject()(
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
           case "IM9008888888" | "IM9008888887" => StubData.singleCorrectionPeriods
-          case "IM9009999888" => StubData.firstPeriodNoCorrections
+          case "IM9009999888" | "IM9009999992" => StubData.firstPeriodNoCorrections
           case "IM9008888886" | "IM9008888884" | "IM9008888883" | "IM9007230000" | "IM9007230003"=> StubData.previousThreeMonthsSubmittedPeriods
           case "IM9006230000" | "IM9007230002" => StubData.previousFourToSixMonthsSubmittedPeriods
           case "IM9007230001" => StubData.previousSevenToNineMonthsSubmittedPeriods
           case "IM9008888882" => StubData.sixMonthsAcrossTwoYearsSubmittedPeriods
           case "IM9008888885" => StubData.previousMonthSubmittedPeriod
+          case "IM9005999997" => StubData.firstReturnAfterTransferringFromAnotherMSID
+          case "IM9005999977" => StubData.secondReturnAfterTransferringFromAnotherMSID
+          case "IM9009999555" => StubData.returnsBeforeTransferringToAnotherMSID
+          case "IM9009995555" => StubData.returnsBeforeTransferringToAnotherMSIDTwoOpen
           case _ => StubData.defaultObligationsResponse
         }
 
