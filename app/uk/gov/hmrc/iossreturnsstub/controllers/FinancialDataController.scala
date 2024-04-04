@@ -55,6 +55,9 @@ class FinancialDataController @Inject()(
       case "IM9001231231" => (NotFound, None) //Error (not found) with payments API
       case "IM9001231232" => (ServiceUnavailable, None) //Error (service unavailable) with payments API
       case "IM9008888883" => (Ok, Some(threeReturnsOneUnknownOneUnpaidOnePaid)) //Three returns submitted, one due, one overdue. One fully paid, one partial and one unpaid
+
+      case "IM9007230000" => (Ok, Some(singleOutstandingPayment)) //Single return, partially paid for previous registrations
+
       case _ => (Ok, successfulResponse.financialTransactions) //Two returns, both with outstanding payments
     }
 
