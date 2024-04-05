@@ -52,6 +52,7 @@ class EtmpController @Inject()(
         case ("IM9001233211", "23AJ") => correctionsScenarioOctoberReturn
         case ("IM9001233211", "23AK") => correctionsScenarioNovemberReturn
         case ("IM9001233211", "23AL") => correctionsScenarioDecemberReturn
+        case ("IM9006230000", _) => basicVatReturn(iossNumber, period)
         case _ => standardVatReturn(iossNumber, period)
       }
 
