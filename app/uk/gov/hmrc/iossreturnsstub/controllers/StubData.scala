@@ -259,8 +259,8 @@ object StubData {
       taxPeriodFrom = Some(firstDayOfEightMonthsAgoPeriod),
       taxPeriodTo = Some(lastDayOfEightMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(2000)),
-      outstandingAmount = Some(BigDecimal(2000)),
-      clearedAmount = Some(BigDecimal(0)),
+      outstandingAmount = Some(BigDecimal(1750)),
+      clearedAmount = Some(BigDecimal(250)),
       items = Some(items)
     ),
     FinancialTransaction(
