@@ -41,7 +41,7 @@ object StubData {
   private val firstDayOfFiveMonthsAgoPeriod = LocalDate.now().minusMonths(5).withDayOfMonth(1)
   private val lastDayOfFiveMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1).minusDays(1)
   private val firstDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1)
-  private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().withDayOfMonth(3).minusDays(1)
+  private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1).minusDays(1)
 
   val items = Seq(
     Item(
