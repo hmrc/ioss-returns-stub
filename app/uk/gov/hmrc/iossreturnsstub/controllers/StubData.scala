@@ -43,6 +43,14 @@ object StubData {
   private val firstDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1)
   private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1).minusDays(1)
 
+  private val firstDayOfNineMonthsAgoPeriod = LocalDate.now().minusMonths(9).withDayOfMonth(1)
+  private val lastDayOfNineMonthsAgoPeriod = LocalDate.now().minusMonths(8).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfEightMonthsAgoPeriod = LocalDate.now().minusMonths(8).withDayOfMonth(1)
+  private val lastDayOfEightMonthsAgoPeriod = LocalDate.now().minusMonths(7).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfSevenMonthsAgoPeriod = LocalDate.now().minusMonths(7).withDayOfMonth(1)
+  private val lastDayOfSevenMonthsAgoPeriod = LocalDate.now().minusMonths(6).withDayOfMonth(1).minusDays(1)
+
+
   val items = Seq(
     Item(
       amount = Some(BigDecimal(1000)),
@@ -139,8 +147,8 @@ object StubData {
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDayOfThreeMonthsAgoPeriod),
-      taxPeriodTo = Some(lastDayOfThreeMonthsAgoPeriod),
+      taxPeriodFrom = Some(firstDayOfNineMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfNineMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(2000)),
       outstandingAmount = Some(BigDecimal(1750)),
       clearedAmount = Some(BigDecimal(250)),
@@ -149,8 +157,8 @@ object StubData {
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDayOfTwoMonthsAgoPeriod),
-      taxPeriodTo = Some(lastDayOfTwoMonthsAgoPeriod),
+      taxPeriodFrom = Some(firstDayOfEightMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfEightMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(2000)),
       outstandingAmount = Some(BigDecimal(1000)),
       clearedAmount = Some(BigDecimal(1000)),
@@ -159,8 +167,8 @@ object StubData {
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
       mainType = None,
-      taxPeriodFrom = Some(firstDayOfOneMonthAgoPeriod),
-      taxPeriodTo = Some(lastDayOfOneMonthAgoPeriod),
+      taxPeriodFrom = Some(firstDayOfSevenMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSevenMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(2000)),
       outstandingAmount = Some(BigDecimal(0)),
       clearedAmount = Some(BigDecimal(2000)),
@@ -227,6 +235,39 @@ object StubData {
       mainType = None,
       taxPeriodFrom = Some(firstDayOfFourMonthsAgoPeriod),
       taxPeriodTo = Some(lastDayOfFourMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOneOutstandingTwoPaidOlderPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfNineMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfNineMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfEightMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfEightMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(2000)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSevenMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSevenMonthsAgoPeriod),
       originalAmount = Some(BigDecimal(2000)),
       outstandingAmount = Some(BigDecimal(0)),
       clearedAmount = Some(BigDecimal(2000)),
