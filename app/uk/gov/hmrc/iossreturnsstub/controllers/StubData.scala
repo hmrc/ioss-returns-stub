@@ -36,6 +36,21 @@ object StubData {
   private val firstDayOfOneMonthAgoPeriod = LocalDate.now().minusMonths(1).withDayOfMonth(1)
   private val lastDayOfOneMonthAgoPeriod = LocalDate.now().withDayOfMonth(1).minusDays(1)
 
+  private val firstDayOfSixMonthsAgoPeriod = LocalDate.now().minusMonths(6).withDayOfMonth(1)
+  private val lastDayOfSixMonthsAgoPeriod = LocalDate.now().minusMonths(5).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfFiveMonthsAgoPeriod = LocalDate.now().minusMonths(5).withDayOfMonth(1)
+  private val lastDayOfFiveMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(4).withDayOfMonth(1)
+  private val lastDayOfFourMonthsAgoPeriod = LocalDate.now().minusMonths(3).withDayOfMonth(1).minusDays(1)
+
+  private val firstDayOfNineMonthsAgoPeriod = LocalDate.now().minusMonths(9).withDayOfMonth(1)
+  private val lastDayOfNineMonthsAgoPeriod = LocalDate.now().minusMonths(8).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfEightMonthsAgoPeriod = LocalDate.now().minusMonths(8).withDayOfMonth(1)
+  private val lastDayOfEightMonthsAgoPeriod = LocalDate.now().minusMonths(7).withDayOfMonth(1).minusDays(1)
+  private val firstDayOfSevenMonthsAgoPeriod = LocalDate.now().minusMonths(7).withDayOfMonth(1)
+  private val lastDayOfSevenMonthsAgoPeriod = LocalDate.now().minusMonths(6).withDayOfMonth(1).minusDays(1)
+
+
   val items = Seq(
     Item(
       amount = Some(BigDecimal(1000)),
@@ -124,6 +139,138 @@ object StubData {
       originalAmount = Some(BigDecimal(1500)),
       outstandingAmount = Some(BigDecimal(500)),
       clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsTwoOutstandingOnePaidPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfNineMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfNineMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(1750)),
+      clearedAmount = Some(BigDecimal(250)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfEightMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfEightMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(1000)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSevenMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSevenMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOutstandingPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSixMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSixMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFiveMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFiveMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFourMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFourMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOneOutstandingTwoPaidPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSixMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSixMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFiveMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFiveMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(2000)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFourMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFourMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOneOutstandingTwoPaidOlderPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfNineMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfNineMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfEightMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfEightMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(1750)),
+      clearedAmount = Some(BigDecimal(250)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSevenMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSevenMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
       items = Some(items)
     )
   )
