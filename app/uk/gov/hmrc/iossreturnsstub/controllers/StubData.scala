@@ -135,6 +135,39 @@ object StubData {
     )
   )
 
+  val threeReturnsTwoOutstandingOnePaidPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfThreeMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfThreeMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(1750)),
+      clearedAmount = Some(BigDecimal(250)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfTwoMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfTwoMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(1000)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfOneMonthAgoPeriod),
+      taxPeriodTo = Some(lastDayOfOneMonthAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    )
+  )
+
   val threeReturnsOutstandingPreviousRegistration = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
@@ -164,6 +197,39 @@ object StubData {
       originalAmount = Some(BigDecimal(2000)),
       outstandingAmount = Some(BigDecimal(500)),
       clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    )
+  )
+
+  val threeReturnsOneOutstandingTwoPaidPreviousRegistration = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfSixMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfSixMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFiveMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFiveMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(2000)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(firstDayOfFourMonthsAgoPeriod),
+      taxPeriodTo = Some(lastDayOfFourMonthsAgoPeriod),
+      originalAmount = Some(BigDecimal(2000)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(2000)),
       items = Some(items)
     )
   )
