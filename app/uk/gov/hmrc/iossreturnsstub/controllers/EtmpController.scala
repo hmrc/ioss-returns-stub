@@ -26,6 +26,7 @@ import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 import uk.gov.hmrc.iossreturnsstub.utils.ReturnData._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
+import java.time.LocalDate
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
@@ -47,6 +48,8 @@ class EtmpController @Inject()(
       val vatReturn = (iossNumber, period) match {
         case ("IM9003333333", _) => nilReturn(iossNumber, period)
         case ("IM9004444444", _) => salesToEuNoCorrectionsReturn(iossNumber, period)
+        case ("IM9005999777", _) => salesToEuNoCorrectionsReturnPartial(iossNumber, period, LocalDate.of(2024, 1, 15), LocalDate.of(2024, 1, 31))
+        case ("IM9009955555", _) => salesToEuNoCorrectionsReturnPartial(iossNumber, "24AB", LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 11))
         case ("IM9005555555", _) => salesToEuWithPositiveCorrectionsReturn(iossNumber, period)
         case ("IM9006666666", _) => noSalesToEuWithPositiveAndNegativeCorrectionsReturn(iossNumber, period)
         case ("IM9001233211", "23AJ") => correctionsScenarioOctoberReturn
@@ -79,8 +82,10 @@ class EtmpController @Inject()(
           case "IM9007230001" | "IM9007230004" => StubData.previousSevenToNineMonthsSubmittedPeriods
           case "IM9008888882" => StubData.sixMonthsAcrossTwoYearsSubmittedPeriods
           case "IM9008888885" => StubData.previousMonthSubmittedPeriod
+          case "IM9005999777" => StubData.firstSubmittedReturnAfterTransferringFromAnotherMSID
           case "IM9005999997" => StubData.firstReturnAfterTransferringFromAnotherMSID
           case "IM9005999977" => StubData.secondReturnAfterTransferringFromAnotherMSID
+          case "IM9009955555" => StubData.returnsSubmittedBeforeTransferringToAnotherMSID
           case "IM9009999555" => StubData.returnsBeforeTransferringToAnotherMSID
           case "IM9009995555" => StubData.returnsBeforeTransferringToAnotherMSIDTwoOpen
           case _ => StubData.defaultObligationsResponse
