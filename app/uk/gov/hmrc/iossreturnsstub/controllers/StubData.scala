@@ -1004,6 +1004,15 @@ object StubData {
     )
   }
 
+  val firstSubmittedReturnAfterTransferringFromAnotherMSID: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AA"
+      )
+    )
+  )))
+
   val firstReturnAfterTransferringFromAnotherMSID: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
       EtmpObligationDetails(
@@ -1022,6 +1031,23 @@ object StubData {
         EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
         periodKey = "24AA"
+      )
+    )
+  )))
+
+  val returnsSubmittedBeforeTransferringToAnotherMSID: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AL"
       )
     )
   )))
