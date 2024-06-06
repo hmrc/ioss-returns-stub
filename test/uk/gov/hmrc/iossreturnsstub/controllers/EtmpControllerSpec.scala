@@ -36,6 +36,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
   private val iossNumber = "IM9001234567"
   private val period = Period(2023, Month.NOVEMBER)
+  private val country: String = "DE"
 
   private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
     .withLocale(Locale.UK)
@@ -217,6 +218,35 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
           dateRange,
           status = Some(obligationFulfilmentStatus)
         )(fakeRequestWithBody)
+
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+  }
+
+  "GET /vec/iossreturns/returncorrection/v1/{IOSSReference}/{MSCON}{PeriodKey}" - {
+
+    val fakeRequest = FakeRequest(POST, routes.EtmpController.getReturnCorrection(iossNumber, country, period.toEtmpPeriodString).url)
+
+    val etmpReturnCorrectionValue: EtmpReturnCorrectionValue =
+      EtmpReturnCorrectionValue(
+        maximumCorrectionValue = BigDecimal(100.00)
+      )
+
+    "must return OK with a successful payload" in {
+
+      val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
+
+      val result = controller.getReturnCorrection(iossNumber, country, period.toEtmpPeriodString)(fakeRequestWithBody)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson(etmpReturnCorrectionValue)
+    }
+
+    "must return Bad Request when headers are missing" in {
+
+      val fakeRequestWithBody = fakeRequest
+
+      val result = controller.getReturnCorrection(iossNumber, country, period.toEtmpPeriodString)(fakeRequestWithBody)
 
       status(result) shouldBe Status.BAD_REQUEST
     }

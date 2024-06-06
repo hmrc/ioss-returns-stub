@@ -98,5 +98,16 @@ class EtmpController @Inject()(
       }
   }
 
+  def getReturnCorrection(iossNumber: String, country: String, period: String): Action[AnyContent] = Action.async {
+    implicit request =>
 
+      jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+        val etmpReturnCorrectionValueResponse: EtmpReturnCorrectionValue =
+          EtmpReturnCorrectionValue(
+            maximumCorrectionValue = BigDecimal(100.00)
+          )
+
+        Ok(Json.toJson(etmpReturnCorrectionValueResponse)).toFuture
+      }
+  }
 }
