@@ -102,9 +102,21 @@ class EtmpController @Inject()(
     implicit request =>
 
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+        val accumulativeCorrectionAmount = (iossNumber, country, period) match {
+          case ("IM9001234567", "DE", "23AJ") => BigDecimal(1469.13)
+          case ("IM9001234567", "DE", "23AK") => BigDecimal(2469.13)
+          case ("IM9001234567", "FR", "23AJ") => BigDecimal(1397.30)
+          case ("IM9001234567", "FR", "23AK") => BigDecimal(2397.30)
+          case ("IM9001233211", "DE", "23AJ") => BigDecimal(3500.00)
+          case ("IM9001233211", "FR", "23AJ") => BigDecimal(4500.00)
+          case ("IM9001234569", "DE", "23AL") => BigDecimal(2469.13)
+          case ("IM9001234569", "FR", "22AL") => BigDecimal(2397.30)
+          case _ => BigDecimal(0)
+        }
+
         val etmpReturnCorrectionValueResponse: EtmpReturnCorrectionValue =
           EtmpReturnCorrectionValue(
-            maximumCorrectionValue = BigDecimal(100.00)
+            maximumCorrectionValue = accumulativeCorrectionAmount
           )
 
         Ok(Json.toJson(etmpReturnCorrectionValueResponse)).toFuture

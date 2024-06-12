@@ -229,7 +229,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
 
     val etmpReturnCorrectionValue: EtmpReturnCorrectionValue =
       EtmpReturnCorrectionValue(
-        maximumCorrectionValue = BigDecimal(100.00)
+        maximumCorrectionValue = BigDecimal(2469.13)
       )
 
     "must return OK with a successful payload" in {
