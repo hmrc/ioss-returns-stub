@@ -48,7 +48,7 @@ class FinancialDataController @Inject()(
       case "IM9003333333" => (Ok, Some(Seq.empty)) //Nil return so no payments required
       case "IM9008888888" => (Ok, Some(singleOutstandingPayment)) //Single return, partially paid
       case "IM9001238999" => (Ok, Some(sixReturnsOutstanding)) //6 returns, partially paid
-      case "IM9008888887" => (Ok, Some(singleReturnFullyPaid)) //Single return, fully paid
+      case "IM9008888887" => (ServiceUnavailable, None) //Single return, fully paid
       case "IM9008888886" => (Ok, Some(threeReturnsTwoOutstandingOnePaid)) //Three returns submitted, one due, one overdue and one paid
       case "IM9008888885" => (Ok, Some(oneReturnWithOutstanding)) //One return submitted that's due payment
       case "IM9008888884" => (Ok, Some(threeReturnsOnePartialOneUnpaidOnePaid)) //Three returns submitted, one due, one overdue. One fully paid, one partial and one unpaid

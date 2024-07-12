@@ -425,6 +425,8 @@ object StubData {
     )
   )))
 
+  val noneObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq.empty)
+
   val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
       EtmpObligationDetails(
