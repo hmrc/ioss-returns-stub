@@ -75,6 +75,7 @@ class EtmpController @Inject()(
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
+          case "IM9001236666" => StubData.moreThanSixYearsFulfilledReturns
           case "IM9008888888" | "IM9008888887" => StubData.singleCorrectionPeriods
           case "IM9009999888" | "IM9009999992" => StubData.firstPeriodNoCorrections
           case "IM9008888886" | "IM9008888884" | "IM9008888883" | "IM9007230000" | "IM9007230003" | "IM9007230006" => StubData.previousThreeMonthsSubmittedPeriods
