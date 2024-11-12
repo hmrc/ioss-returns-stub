@@ -1354,6 +1354,21 @@ object StubData {
     )
   }
 
+  val periodBeforeCurrentQuarantine: EtmpObligations = {
+    val previousMonth = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = previousMonth
+          )
+        )
+      ))
+    )
+  }
+
   val firstSubmittedReturnAfterTransferringFromAnotherMSID: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
       EtmpObligationDetails(
