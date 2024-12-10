@@ -18,7 +18,6 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-import play.api.http.HeaderNames.{ACCEPT, AUTHORIZATION, CONTENT_TYPE, DATE}
 import play.api.http.{MimeTypes, Status}
 import play.api.libs.json.Json
 import play.api.mvc.Headers

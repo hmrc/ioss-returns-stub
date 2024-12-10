@@ -31,7 +31,7 @@ object DateRange {
     .withLocale(Locale.UK)
     .withZone(ZoneId.systemDefault())
 
-  implicit def queryStringBindable(implicit localDateBinder: QueryStringBindable[String]) = new QueryStringBindable[DateRange] {
+  implicit def queryStringBindable(implicit localDateBinder: QueryStringBindable[String]): QueryStringBindable[DateRange] = new QueryStringBindable[DateRange] {
     override def bind(key: String, params: Map[String, Seq[String]]): Option[Either[String, DateRange]] = {
       for {
         from <- localDateBinder.bind("dateFrom", params)
