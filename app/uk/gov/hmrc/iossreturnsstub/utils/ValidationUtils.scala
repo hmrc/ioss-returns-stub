@@ -40,7 +40,7 @@ object ValidationUtils {
     .toFormatter
 
   def range[A](from: Int, to: Int)(implicit reads: Reads[A], p: A => scala.collection.Iterable[_]): Reads[A] =
-    Reads.filter[A](JsonValidationError(s"Collection must have between $from and $to values", from))(x => x.size >= from && x.size <= to)
+    Reads.filter[A](JsonValidationError(s"Collection must have between $from and $to values", from))(x => p(x).size >= from && p(x).size <= to)
 
   val validatedDateRead: Reads[LocalDate] =
     Reads.pattern(dateRegex.r, "Not a valid date with format yyyy-MM-dd")

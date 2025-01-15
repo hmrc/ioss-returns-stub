@@ -37,7 +37,7 @@ object CoreTraderId {
     (
       (__ \ "IOSSNumber").write[String] and
         (__ \ "issuedBy").write[String]
-      ) (unlift(CoreTraderId.unapply))
+      ) (coreTraderId => Tuple.fromProductTyped(coreTraderId))
   )
 }
 
@@ -64,7 +64,7 @@ object CorePeriod {
     (
       (__ \ "year").write[Int] and
         (__ \ "month").write[String]
-      ) (unlift(CorePeriod.unapply))
+      ) (corePeriod => Tuple.fromProductTyped(corePeriod))
   )
 }
 
@@ -92,7 +92,7 @@ object CoreSupply {
         (__ \ "vatRateType").write[String] and
         (__ \ "taxableAmountGBP").write[BigDecimal] and
         (__ \ "vatAmountGBP").write[BigDecimal]
-      ) (unlift(CoreSupply.unapply))
+      ) (coreSupply => Tuple.fromProductTyped(coreSupply))
   )
 
 }
@@ -150,7 +150,7 @@ object CoreCorrection {
     (
       (__ \ "period").write[CorePeriod] and
         (__ \ "totalVatAmountCorrectionGBP").write[BigDecimal]
-      ) (unlift(CoreCorrection.unapply))
+      ) (coreCorrection => Tuple.fromProductTyped(coreCorrection))
   )
 }
 
@@ -181,7 +181,7 @@ object CoreMsconSupply {
         (__ \ "correctionsTotalGBP").write[BigDecimal] and
         (__ \ "msidSupplies").write[List[CoreSupply]] and
         (__ \ "corrections").write[List[CoreCorrection]]
-      ) (unlift(CoreMsconSupply.unapply))
+      ) (coreMsconSupply => Tuple.fromProductTyped(coreMsconSupply))
   )
 }
 
@@ -224,7 +224,7 @@ object CoreVatReturn {
         (__ \ "submissionDateTime").write[Instant] and
         (__ \ "totalAmountVatDueGBP").write[BigDecimal] and
         (__ \ "msconSupplies").write[List[CoreMsconSupply]]
-      ) (unlift(CoreVatReturn.unapply))
+      ) (coreVatReturn => Tuple.fromProductTyped(coreVatReturn))
   )
 }
 
