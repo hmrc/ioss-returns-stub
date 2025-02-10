@@ -1,11 +1,12 @@
 # microservice specific routes
 
-GET         /vec/iossreturns/viewreturns/v1/:iossNumber/:period                      uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getVatReturn(iossNumber: String, period: String)
+GET         /vec/iossreturns/viewreturns/v1/:iossNumber/:period                         uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getVatReturn(iossNumber: String, period: String)
 
-POST        /vec/submitvatreturn/v1/ioss                                             uk.gov.hmrc.iossreturnsstub.controllers.CoreController.submitVatReturn()
+POST        /vec/submitvatreturn/v1/ioss                                                uk.gov.hmrc.iossreturnsstub.controllers.CoreController.submitVatReturn()
 
-GET         /enterprise/financial-data/:idType/:idNumber/:regimeType                 uk.gov.hmrc.iossreturnsstub.controllers.FinancialDataController.getFinancialData(idType: String, idNumber: String, regimeType: String, dateRange: DateRange)
+GET         /enterprise/financial-data/:idType/:idNumber/:regimeType                    uk.gov.hmrc.iossreturnsstub.controllers.FinancialDataController.getFinancialData(idType: String, idNumber: String, regimeType: String, dateRange: DateRange)
 
-GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType                uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: Option[String])
+GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType                   uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: Option[String])
 
-GET         /vec/iossreturns/returncorrection/v1/:iossNumber/:country/:period        uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getReturnCorrection(iossNumber: String, country: String, period: String)
+GET         /vec/iossreturns/returncorrection/v1/:iossNumber/:country/:period           uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getReturnCorrection(iossNumber: String, country: String, period: String)
+GET         /vec/ossiossreturns/returncorrection/v1/:iossNumber/:country/:period        uk.gov.hmrc.iossreturnsstub.controllers.EtmpController.getReturnCorrection(iossNumber: String, country: String, period: String)
