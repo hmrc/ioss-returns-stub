@@ -190,6 +190,96 @@ object ReturnData {
     )
   }
 
+  val December2024Returns: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("24AL")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001236667/$referencePeriod",
+      returnVersion = LocalDateTime.of(2025, 1, 1, 0, 0, 0),
+      periodKey = "24AL",
+      returnPeriodFrom = LocalDate.of(2024, 12, 1),
+      returnPeriodTo = LocalDate.of(2024, 12, 31),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(6000.00),
+          vatAmountGBP = BigDecimal(6000.00)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(4000.00),
+          vatAmountGBP = BigDecimal(4000.00)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(10000.00),
+      totalVATAmountPayable = BigDecimal(10000.00),
+      totalVATAmountPayableAllSpplied = BigDecimal(10000.00),
+      correctionPreviousVATReturn = Seq.empty,
+      totalVATAmountFromCorrectionGBP = BigDecimal(0.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(6000.00),
+          totalVATEUR = BigDecimal(6000.00)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(4000.00),
+          totalVATEUR = BigDecimal(4000.00)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(10000.00),
+      paymentReference = s"XI/IM9001236667/$referencePeriod"
+    )
+  }
+
+  val January2025Returns: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("25AA")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001236667/$referencePeriod",
+      returnVersion = LocalDateTime.of(2025, 2, 1, 0, 0, 0),
+      periodKey = "25AA",
+      returnPeriodFrom = LocalDate.of(2025, 1, 1),
+      returnPeriodTo = LocalDate.of(2025, 1, 31),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(6000.00),
+          vatAmountGBP = BigDecimal(6000.00)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(4000.00),
+          vatAmountGBP = BigDecimal(4000.00)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(10000.00),
+      totalVATAmountPayable = BigDecimal(10000.00),
+      totalVATAmountPayableAllSpplied = BigDecimal(10000.00),
+      correctionPreviousVATReturn = Seq.empty,
+      totalVATAmountFromCorrectionGBP = BigDecimal(0.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(6000.00),
+          totalVATEUR = BigDecimal(6000.00)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(4000.00),
+          totalVATEUR = BigDecimal(4000.00)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(10000.00),
+      paymentReference = s"XI/IM9001236667/$referencePeriod"
+    )
+  }
+  
   val correctionsScenarioNovemberReturn: EtmpVatReturn = {
     val referencePeriod = toReferencePeriod("23AK")
 
