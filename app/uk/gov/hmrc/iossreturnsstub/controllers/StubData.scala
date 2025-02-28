@@ -425,6 +425,19 @@ object StubData {
     )
   )))
 
+  val fullMonthsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AL"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      )
+    )
+  )))
+
   val multipleCorrectionPeriods: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
       EtmpObligationDetails(

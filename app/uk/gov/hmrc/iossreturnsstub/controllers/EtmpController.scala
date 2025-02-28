@@ -55,6 +55,8 @@ class EtmpController @Inject()(
         case ("IM9001233211", "23AJ") => correctionsScenarioOctoberReturn
         case ("IM9001233211", "23AK") => correctionsScenarioNovemberReturn
         case ("IM9001233211", "23AL") => correctionsScenarioDecemberReturn
+        case ("IM9001236667", "24AL") => December2024Returns
+        case ("IM9001236667", "25AA") => January2025Returns
         case ("IM9006230000", _) | ("IM9004230000", _) | ("IM9007230005", _) | ("IM9007230004", _) | ("IM9007230002", _) | ("IM9007230001", _) => basicVatReturn(iossNumber, period)
         case _ => standardVatReturn(iossNumber, period)
       }
@@ -91,6 +93,7 @@ class EtmpController @Inject()(
           case "IM9009995555" => StubData.returnsBeforeTransferringToAnotherMSIDTwoOpen
           case "IM9002999993" => StubData.periodsBeforeQuarantine
           case "IM9003999993" => StubData.periodBeforeCurrentQuarantine
+          case "IM9001236667" => StubData.fullMonthsResponse
           case _ => StubData.defaultObligationsResponse
         }
 
