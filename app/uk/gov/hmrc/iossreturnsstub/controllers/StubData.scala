@@ -1327,6 +1327,15 @@ object StubData {
     )
   }
 
+  val fulfilledDecember2023Response: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "23AL"
+      )
+    )
+  )))
+
   val previousMonthSubmittedPeriod: EtmpObligations = {
     val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
 

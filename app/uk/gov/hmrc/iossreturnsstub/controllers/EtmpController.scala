@@ -46,7 +46,7 @@ class EtmpController @Inject()(
     jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
       val vatReturn = (iossNumber, period) match {
-        case ("IM9003333333", _) => nilReturn(iossNumber, period)
+        case ("IM9003333333", "23AL") => nilReturn(iossNumber, "23AL")
         case ("IM9004444444", _) => salesToEuNoCorrectionsReturn(iossNumber, period)
         case ("IM9005999777", _) => salesToEuNoCorrectionsReturnPartial(iossNumber, period, LocalDate.of(2024, 1, 15), LocalDate.of(2024, 1, 31))
         case ("IM9009955555", _) => salesToEuNoCorrectionsReturnPartial(iossNumber, "24AB", LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 11))
@@ -57,6 +57,10 @@ class EtmpController @Inject()(
         case ("IM9001233211", "23AL") => correctionsScenarioDecemberReturn
         case ("IM9001236667", "24AL") => December2024Returns
         case ("IM9001236667", "25AA") => January2025Returns
+        case ("IM9001234567", "23AJ") => october2023Return
+        case ("IM9001234567", "23AK") => returnWithPositiveAndNegativeCorrections("23AK", LocalDate.of(2023, 11, 1), LocalDate.of(2023, 11, 30))
+        case ("IM9008888882", "22AK") => returnWithPositiveAndNegativeCorrections("22AK", LocalDate.of(2022, 11, 1), LocalDate.of(2022, 11, 30))
+        case ("IM9008888882", "22AL") => returnWithPositiveAndNegativeCorrections("22AL", LocalDate.of(2022, 12, 1), LocalDate.of(2022, 12, 31))
         case ("IM9006230000", _) | ("IM9004230000", _) | ("IM9007230005", _) | ("IM9007230004", _) | ("IM9007230002", _) | ("IM9007230001", _) => basicVatReturn(iossNumber, period)
         case _ => standardVatReturn(iossNumber, period)
       }
@@ -94,6 +98,7 @@ class EtmpController @Inject()(
           case "IM9002999993" => StubData.periodsBeforeQuarantine
           case "IM9003999993" => StubData.periodBeforeCurrentQuarantine
           case "IM9001236667" => StubData.fullMonthsResponse
+          case "IM9003333333" | "IM9004444444" => StubData.fulfilledDecember2023Response
           case _ => StubData.defaultObligationsResponse
         }
 

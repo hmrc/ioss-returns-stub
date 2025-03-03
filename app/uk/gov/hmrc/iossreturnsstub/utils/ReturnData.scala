@@ -665,6 +665,111 @@ object ReturnData {
     )
   }
 
+
+
+
+
+  def october2023Return: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("23AJ")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001234567/$referencePeriod",
+      returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
+      periodKey = "23AJ",
+      returnPeriodFrom = LocalDate.of(2023, 10, 1),
+      returnPeriodTo = LocalDate.of(2023, 10, 31),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(12345.67),
+          vatAmountGBP = BigDecimal(2469.13)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(23973.03),
+          vatAmountGBP = BigDecimal(2397.30)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(4866.43),
+      totalVATAmountPayable = BigDecimal(4866.43),
+      totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
+      correctionPreviousVATReturn = Seq.empty,
+      totalVATAmountFromCorrectionGBP = BigDecimal(0),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(5469.13),
+          totalVATEUR = BigDecimal(6385.72)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(3397.30),
+          totalVATEUR = BigDecimal(3966.53)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "ES",
+          totalVATDueGBP = BigDecimal(2500.00),
+          totalVATEUR = BigDecimal(2919.05)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(11366.43),
+      paymentReference = s"XI/IM9001234567/$referencePeriod"
+    )
+  }
+
+  def returnWithPositiveAndNegativeCorrections(period: String, returnStartDate: LocalDate, returnEndDate: LocalDate): EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod(period)
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001234567/$referencePeriod",
+      returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
+      periodKey = period,
+      returnStartDate,
+      returnEndDate,
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(23973.03),
+          vatAmountGBP = BigDecimal(2397.30)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(4866.43),
+      totalVATAmountPayable = BigDecimal(4866.43),
+      totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
+      correctionPreviousVATReturn = Seq(
+        EtmpVatReturnCorrection(
+          periodKey = "23AJ",
+          periodFrom = LocalDate.of(2023, 10, 1).toString,
+          periodTo = LocalDate.of(2023, 10, 31).toString,
+          msOfConsumption = "DE",
+          totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+        ),
+        EtmpVatReturnCorrection(
+          periodKey = "23AJ",
+          periodFrom = LocalDate.of(2023, 10, 1).toString,
+          periodTo = LocalDate.of(2023, 10, 31).toString,
+          msOfConsumption = "AT",
+          totalVATAmountCorrectionGBP = BigDecimal(2000.00),
+          totalVATAmountCorrectionEUR = BigDecimal(2100.41)
+        )
+      ),
+      totalVATAmountFromCorrectionGBP = BigDecimal(1000.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(2397.30),
+          totalVATEUR = BigDecimal(2397.30)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(11366.43),
+      paymentReference = s"XI/IM9001234567/$referencePeriod"
+    )
+  }
+
   def nilReturn(iossNumber: String, period: String): EtmpVatReturn = {
     val referencePeriod = toReferencePeriod(period)
 
