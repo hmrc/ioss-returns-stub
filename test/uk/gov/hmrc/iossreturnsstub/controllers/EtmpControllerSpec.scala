@@ -59,18 +59,12 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     "Return OK when valid" in {
 
       val vatReturn = EtmpVatReturn(
-        returnReference = s"XI/$iossNumber/2023.M11",
+        returnReference = s"XI/IM9001234567/2023.M11",
         returnVersion = LocalDateTime.of(2024, 1, 2, 0, 0, 0),
         periodKey = "23AK",
-        returnPeriodFrom = LocalDate.of(2023, 12, 1),
-        returnPeriodTo = LocalDate.of(2023, 12, 31),
+        returnPeriodFrom = LocalDate.of(2023, 11, 1),
+        returnPeriodTo = LocalDate.of(2023, 11, 30),
         goodsSupplied = Seq(
-          EtmpVatReturnGoodsSupplied(
-            msOfConsumption = "DE",
-            vatRateType = EtmpVatRateType.StandardVatRate,
-            taxableAmountGBP = BigDecimal(12345.67),
-            vatAmountGBP = BigDecimal(2469.13)
-          ),
           EtmpVatReturnGoodsSupplied(
             msOfConsumption = "FR",
             vatRateType = EtmpVatRateType.ReducedVatRate,
@@ -83,22 +77,6 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
         totalVATAmountPayableAllSpplied = BigDecimal(4866.43),
         correctionPreviousVATReturn = Seq(
           EtmpVatReturnCorrection(
-            periodKey = "23AH",
-            periodFrom = LocalDate.of(2023, 8, 1).toString,
-            periodTo = LocalDate.of(2023, 8, 31).toString,
-            msOfConsumption = "DE",
-            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
-            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
-          ),
-          EtmpVatReturnCorrection(
-            periodKey = "23AI",
-            periodFrom = LocalDate.of(2023, 9, 1).toString,
-            periodTo = LocalDate.of(2023, 9, 30).toString,
-            msOfConsumption = "DE",
-            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
-            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
-          ),
-          EtmpVatReturnCorrection(
             periodKey = "23AJ",
             periodFrom = LocalDate.of(2023, 10, 1).toString,
             periodTo = LocalDate.of(2023, 10, 31).toString,
@@ -110,26 +88,21 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
             periodKey = "23AJ",
             periodFrom = LocalDate.of(2023, 10, 1).toString,
             periodTo = LocalDate.of(2023, 10, 31).toString,
-            msOfConsumption = "FR",
-            totalVATAmountCorrectionGBP = BigDecimal(-1000.00),
-            totalVATAmountCorrectionEUR = BigDecimal(-1100.41)
+            msOfConsumption = "AT",
+            totalVATAmountCorrectionGBP = BigDecimal(2000.00),
+            totalVATAmountCorrectionEUR = BigDecimal(2100.41)
           )
         ),
-        totalVATAmountFromCorrectionGBP = BigDecimal(-4000.00),
+        totalVATAmountFromCorrectionGBP = BigDecimal(1000.00),
         balanceOfVATDueForMS = Seq(
           EtmpVatReturnBalanceOfVatDue(
-            msOfConsumption = "DE",
-            totalVATDueGBP = BigDecimal(0),
-            totalVATEUR = BigDecimal(0)
-          ),
-          EtmpVatReturnBalanceOfVatDue(
             msOfConsumption = "FR",
-            totalVATDueGBP = BigDecimal(1397.30),
-            totalVATEUR = BigDecimal(1537.60)
+            totalVATDueGBP = BigDecimal(2397.30),
+            totalVATEUR = BigDecimal(2397.30)
           )
         ),
-        totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
-        paymentReference = s"XI/$iossNumber/2023.M11"
+        totalVATAmountDueForAllMSGBP = BigDecimal(11366.43),
+        paymentReference = s"XI/IM9001234567/2023.M11"
       )
 
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
@@ -153,7 +126,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     "Return OK for nilReturn scenario" in {
 
       val iossNumber = "IM9003333333"
-      val period = Period(2023, Month.JANUARY)
+      val period = Period(2023, Month.DECEMBER)
 
       val expectedResponse = nilReturn(iossNumber, period.toEtmpPeriodString)
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
