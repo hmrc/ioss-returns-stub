@@ -99,6 +99,8 @@ class EtmpController @Inject()(
           case "IM9003999993" => StubData.periodBeforeCurrentQuarantine
           case "IM9001236667" => StubData.fullMonthsResponse
           case "IM9003333333" | "IM9004444444" => StubData.fulfilledDecember2023Response
+          case "IM9006231111" => StubData.oldestPreviousRegistrationFulfilled
+          case "IM9007231111" => StubData.latestPreviousRegistrationFulfilled
           case _ => StubData.defaultObligationsResponse
         }
 
