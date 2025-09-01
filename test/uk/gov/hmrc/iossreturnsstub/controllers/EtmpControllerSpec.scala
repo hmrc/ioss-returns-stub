@@ -26,9 +26,9 @@ import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.iossreturnsstub.models.*
 import uk.gov.hmrc.iossreturnsstub.models.etmp.*
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossreturnsstub.utils.ReturnData._
+import uk.gov.hmrc.iossreturnsstub.utils.ReturnData.*
 
-import java.time.{Clock, LocalDate, LocalDateTime, Month, ZoneId}
+import java.time.{Clock, LocalDate, LocalDateTime, Month, ZoneId, ZoneOffset}
 import java.time.format.DateTimeFormatter
 import java.util.{Locale, UUID}
 
@@ -38,9 +38,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
   private val period = Period(2023, Month.NOVEMBER)
   private val country: String = "DE"
 
-  private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
-    .withZone(ZoneId.of("GMT"))
+  private val dateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
   private val fakeRequest = FakeRequest(POST, routes.EtmpController.getVatReturn(iossNumber, period.toEtmpPeriodString).url)
   private val stubClock: Clock = Clock.fixed(LocalDate.now.atStartOfDay(ZoneId.systemDefault).toInstant, ZoneId.systemDefault)
   private val jsonSchemaHelper = new JsonSchemaHelper(stubClock)
@@ -51,7 +49,7 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
     ("X-Correlation-Id", UUID.randomUUID().toString),
     ("X-Forwarded-Host", ""),
     (CONTENT_TYPE, MimeTypes.JSON),
-    (DATE, dateTimeFormatter.format(LocalDateTime.now())))
+    (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
 
   val validFakeHeaders = new Headers(validHeaders)
 
