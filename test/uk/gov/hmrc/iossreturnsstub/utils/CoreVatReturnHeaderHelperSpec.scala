@@ -30,7 +30,7 @@ import java.util.{Locale, UUID}
 class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with Matchers {
 
   private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
+    .withLocale(Locale.ENGLISH)
     .withZone(ZoneId.of("GMT"))
 
   "CoreVatReturnHeaderHelper#" - {

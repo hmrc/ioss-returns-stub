@@ -28,7 +28,7 @@ case object CoreVatReturnHeaderHelper {
   private val X_CORRELATION_ID = "X-Correlation-Id"
   private final lazy val correlationIdRegex = "^[0-9a-fA-F]{8}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{12}$"
   private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
+    .withLocale(Locale.ENGLISH)
     .withZone(ZoneId.of("GMT"))
 
   private def validateCorrelationId(headers: Seq[(String, String)]): HeaderValidationResult = {

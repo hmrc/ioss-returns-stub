@@ -34,7 +34,7 @@ import java.util.{Locale, UUID}
 class CoreControllerSpec extends AnyFreeSpec with Matchers {
 
   private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
+    .withLocale(Locale.ENGLISH)
     .withZone(ZoneId.of("GMT"))
   private val fakeRequest = FakeRequest(POST, routes.CoreController.submitVatReturn().url)
   private val stubClock: Clock = Clock.fixed(LocalDate.now.atStartOfDay(ZoneId.systemDefault).toInstant, ZoneId.systemDefault)
