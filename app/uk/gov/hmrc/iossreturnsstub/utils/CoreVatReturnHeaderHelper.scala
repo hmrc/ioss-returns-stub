@@ -27,9 +27,7 @@ case object CoreVatReturnHeaderHelper {
   type HeaderValidationResult = Either[HeaderError, Unit]
   private val X_CORRELATION_ID = "X-Correlation-Id"
   private final lazy val correlationIdRegex = "^[0-9a-fA-F]{8}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{4}[-][0-9a-fA-F]{12}$"
-  private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
-    .withZone(ZoneId.of("GMT"))
+  private val dateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
 
   private def validateCorrelationId(headers: Seq[(String, String)]): HeaderValidationResult = {
     headers.find(_._1.equalsIgnoreCase(X_CORRELATION_ID))

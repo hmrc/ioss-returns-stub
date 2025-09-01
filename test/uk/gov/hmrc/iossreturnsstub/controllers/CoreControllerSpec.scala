@@ -22,20 +22,18 @@ import play.api.http.{MimeTypes, Status}
 import play.api.libs.json.Json
 import play.api.mvc.Headers
 import play.api.test.{FakeRequest, Helpers}
-import play.api.test.Helpers._
-import uk.gov.hmrc.iossreturnsstub.models._
+import play.api.test.Helpers.*
+import uk.gov.hmrc.iossreturnsstub.models.*
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.time.{Clock, Instant, LocalDate, LocalDateTime, Month, ZoneId}
+import java.time.{Clock, Instant, LocalDate, LocalDateTime, Month, ZoneId, ZoneOffset}
 import java.util.{Locale, UUID}
 
 class CoreControllerSpec extends AnyFreeSpec with Matchers {
 
-  private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
-    .withLocale(Locale.UK)
-    .withZone(ZoneId.of("GMT"))
+  private val dateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
   private val fakeRequest = FakeRequest(POST, routes.CoreController.submitVatReturn().url)
   private val stubClock: Clock = Clock.fixed(LocalDate.now.atStartOfDay(ZoneId.systemDefault).toInstant, ZoneId.systemDefault)
   private val jsonSchemaHelper = new JsonSchemaHelper(stubClock)
@@ -46,7 +44,7 @@ class CoreControllerSpec extends AnyFreeSpec with Matchers {
     ("X-Correlation-Id", UUID.randomUUID().toString),
     ("X-Forwarded-Host", ""),
     (CONTENT_TYPE, MimeTypes.JSON),
-    (DATE, dateTimeFormatter.format(LocalDateTime.now())))
+    (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
 
   val validFakeHeaders = new Headers(validHeaders)
 
