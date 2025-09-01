@@ -23,13 +23,15 @@ import org.scalatest.matchers.should.Matchers
 import play.api.http.HeaderNames.{ACCEPT, AUTHORIZATION, CONTENT_TYPE, DATE}
 import play.api.http.MimeTypes
 
-import java.time.{LocalDateTime, ZoneId, ZoneOffset}
+import java.time.{LocalDateTime, ZoneId}
 import java.time.format.DateTimeFormatter
 import java.util.{Locale, UUID}
 
 class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with Matchers {
 
-  private val dateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
+  private val dateTimeFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z")
+    .withLocale(Locale.UK)
+    .withZone(ZoneId.of("GMT"))
 
   "CoreVatReturnHeaderHelper#" - {
 
@@ -40,7 +42,7 @@ class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with M
         ("X-Correlation-Id", UUID.randomUUID().toString),
         ("X-Forwarded-Host", ""),
         (CONTENT_TYPE, MimeTypes.JSON),
-        (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
+        (DATE, dateTimeFormatter.format(LocalDateTime.now())))
 
       CoreVatReturnHeaderHelper.validateHeaders(headers) mustBe Right((): Unit)
 
@@ -52,7 +54,7 @@ class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with M
         (ACCEPT, MimeTypes.JSON),
         ("X-Correlation-Id", UUID.randomUUID().toString),
         ("X-Forwarded-Host", ""),
-        (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
+        (DATE, dateTimeFormatter.format(LocalDateTime.now())))
 
       CoreVatReturnHeaderHelper.validateHeaders(headers) mustBe Left(MissingHeader(CONTENT_TYPE))
     }
@@ -70,7 +72,7 @@ class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with M
         ("X-Correlation-Id", UUID.randomUUID().toString),
         ("X-Forwarded-Host", ""),
         (CONTENT_TYPE, MimeTypes.JSON),
-        (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
+        (DATE, dateTimeFormatter.format(LocalDateTime.now())))
 
       CoreVatReturnHeaderHelper.validateHeaders(headers) mustBe Left(InvalidHeader(ACCEPT))
 
@@ -83,7 +85,7 @@ class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with M
         ("X-Correlation-Id", "something"),
         ("X-Forwarded-Host", ""),
         (CONTENT_TYPE, MimeTypes.JSON),
-        (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
+        (DATE, dateTimeFormatter.format(LocalDateTime.now())))
 
       CoreVatReturnHeaderHelper.validateHeaders(headers) mustBe Left(InvalidHeader("X-Correlation-Id"))
 
@@ -96,7 +98,7 @@ class CoreVatReturnHeaderHelperSpec extends AnyFreeSpec with ScalaFutures with M
         ("X-Correlation-Id", UUID.randomUUID().toString),
         ("X-Forwarded-Host", ""),
         (CONTENT_TYPE, "something"),
-        (DATE, dateTimeFormatter.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))))
+        (DATE, dateTimeFormatter.format(LocalDateTime.now())))
 
       CoreVatReturnHeaderHelper.validateHeaders(headers) mustBe Left(InvalidHeader(CONTENT_TYPE))
 
