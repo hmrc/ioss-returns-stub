@@ -459,63 +459,63 @@ object StubData {
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AA"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(1))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AB"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(2))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AC"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(3))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AD"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(4))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AE"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(5))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AF"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(6))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AG"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(7))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AH"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(8))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AI"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(9))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AJ"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(10))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AK"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AL"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AJ"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(10))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AK"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(11))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AL"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
       )
     )
   )))
@@ -1498,6 +1498,9 @@ object StubData {
       )
     )
   )))
+
+  val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
+  val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
   private def getEtmpStringFromDate(date: LocalDate): String = {
     s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"

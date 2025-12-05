@@ -18,12 +18,12 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import play.api.Logging
 import play.api.libs.json.Json
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.iossreturnsstub.models.ObligationsDateRange
-import uk.gov.hmrc.iossreturnsstub.models.etmp._
+import uk.gov.hmrc.iossreturnsstub.models.etmp.*
 import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossreturnsstub.utils.ReturnData._
+import uk.gov.hmrc.iossreturnsstub.utils.ReturnData.*
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.LocalDate
@@ -114,6 +114,7 @@ class EtmpController @Inject()(
     implicit request =>
 
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+
         val accumulativeCorrectionAmount = (iossNumber, country, period) match {
           case ("IM9001234567", "DE", "23AJ") => BigDecimal(1469.13)
           case ("IM9001234567", "DE", "23AK") => BigDecimal(2469.13)
@@ -121,8 +122,8 @@ class EtmpController @Inject()(
           case ("IM9001234567", "FR", "23AK") => BigDecimal(2397.30)
           case ("IM9001233211", "DE", "23AJ") => BigDecimal(3500.00)
           case ("IM9001233211", "FR", "23AJ") => BigDecimal(4500.00)
-          case ("IM9001234569", "DE", "23AL") => BigDecimal(2469.13)
-          case ("IM9001234569", "FR", "22AL") => BigDecimal(2397.30)
+          case ("IM9001234569", "DE", StubData.decemberLastYear) => BigDecimal(2469.13)
+          case ("IM9001234569", "FR", StubData.decembertwoYearsAgo) => BigDecimal(2397.30)
           case _ => BigDecimal(0)
         }
 
