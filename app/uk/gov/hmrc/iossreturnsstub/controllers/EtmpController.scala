@@ -77,7 +77,9 @@ class EtmpController @Inject()(
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
         def generateObligations(idNumber: String): EtmpObligations = idNumber match {
-          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9059999994" | "IM9001233211" | "IM9004999991" | "IM9019999998" | "IM9004999993" | "IM9004999992" | "IM9004999994" | "IM9005999993" | "IM9005999996" | "IM9005999991" | "IM9005999992" | "IM9005999994" | "IM9029999997" | "IM9019999997" => StubData.multipleCorrectionPeriods
+          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9059999994" | "IM9001233211" | "IM9004999991"
+               | "IM9019999998" | "IM9004999993" | "IM9004999992" | "IM9004999994" | "IM9005999993" | "IM9005999996"
+               | "IM9005999991" | "IM9005999992" | "IM9005999994" | "IM9029999997" | "IM9019999997" => StubData.multipleCorrectionPeriods
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
@@ -101,6 +103,7 @@ class EtmpController @Inject()(
           case "IM9003333333" | "IM9004444444" => StubData.fulfilledDecember2023Response
           case "IM9006231111" => StubData.oldestPreviousRegistrationFulfilled
           case "IM9007231111" => StubData.latestPreviousRegistrationFulfilled
+          case "IM9001144771" => StubData.twoFulfilledInt
           case _ => StubData.defaultObligationsResponse
         }
 

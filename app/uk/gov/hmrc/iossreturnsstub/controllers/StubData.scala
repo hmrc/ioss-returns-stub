@@ -1499,6 +1499,24 @@ object StubData {
     )
   )))
 
+
+  val twoFulfilledInt: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "25AC"
+      )
+    )
+  )))
+
   val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
   val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
