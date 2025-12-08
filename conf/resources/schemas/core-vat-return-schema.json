@@ -201,7 +201,7 @@
               "pattern": "^IN[0-9]{10}$"
             },
             "intChangeDate": {
-              "$ref": "#/definitions/date-Time"
+              "$ref": "#/definitions/date-time"
             }
           },
           "required": [
