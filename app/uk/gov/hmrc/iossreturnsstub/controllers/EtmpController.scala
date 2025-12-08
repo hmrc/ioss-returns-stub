@@ -120,6 +120,9 @@ class EtmpController @Inject()(
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
         val accumulativeCorrectionAmount = (iossNumber, country, period) match {
+          case ("IM9001144777", "DE", "25AA") => BigDecimal(1000.00)
+          case ("IM9001144777", "DE", "25AB") => BigDecimal(2000.00)
+          case ("IM9001144777", "FR", "25AB") => BigDecimal(1500.00)
           case ("IM9001234567", "DE", "23AJ") => BigDecimal(1469.13)
           case ("IM9001234567", "DE", "23AK") => BigDecimal(2469.13)
           case ("IM9001234567", "FR", "23AJ") => BigDecimal(1397.30)
