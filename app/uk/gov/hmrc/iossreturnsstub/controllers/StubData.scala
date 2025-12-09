@@ -371,6 +371,52 @@ object StubData {
     )
   )
 
+  val twoReturnsOnePartialOneUnpaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.JANUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.JANUARY, 31)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(1397.30)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.FEBRUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.FEBRUARY, 28)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(397.30)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
+  val twoReturnsOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.JANUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.JANUARY, 31)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(1397.30)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.FEBRUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.FEBRUARY, 28)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1397.30)),
+      items = Some(items)
+    )
+  )
+
   val threeReturnsOneUnknownOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
