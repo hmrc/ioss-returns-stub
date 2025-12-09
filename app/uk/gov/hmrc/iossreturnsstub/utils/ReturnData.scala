@@ -280,6 +280,27 @@ object ReturnData {
     )
   }
 
+  val NetpDecember2024: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("24AL")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001001001/$referencePeriod",
+      returnVersion = LocalDateTime.of(2025, 1, 1, 0, 0, 0),
+      periodKey = "24AL",
+      returnPeriodFrom = LocalDate.of(2024, 12, 1),
+      returnPeriodTo = LocalDate.of(2024, 12, 31),
+      goodsSupplied = Seq.empty,
+      totalVATGoodsSuppliedGBP = BigDecimal(0),
+      totalVATAmountPayable = BigDecimal(0),
+      totalVATAmountPayableAllSpplied = BigDecimal(0),
+      correctionPreviousVATReturn = Seq.empty,
+      totalVATAmountFromCorrectionGBP = BigDecimal(0),
+      balanceOfVATDueForMS = Seq.empty,
+      totalVATAmountDueForAllMSGBP = BigDecimal(0),
+      paymentReference = s"XI/IM9001001001/$referencePeriod"
+    )
+  }
+
   val NetpJanuary2025: EtmpVatReturn = {
     val referencePeriod = toReferencePeriod("25AA")
 

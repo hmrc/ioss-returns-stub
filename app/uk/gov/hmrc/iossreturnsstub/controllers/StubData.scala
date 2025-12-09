@@ -1545,6 +1545,19 @@ object StubData {
     )
   )))
 
+  val twoFulfilledDifferentYears: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AL"
+      )
+    )
+  )))
+
 
   val twoFulfilledInt: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(

@@ -57,7 +57,8 @@ class EtmpController @Inject()(
         case ("IM9001233211", "23AL") => correctionsScenarioDecemberReturn
         case ("IM9001236667", "24AL") => December2024Returns
         case ("IM9001236667", "25AA") => January2025Returns
-        case ("IM9001144771", "25AA") => NetpJanuary2025
+        case ("IM9001001001", "24AL") => NetpDecember2024
+        case ("IM9001001001", "25AA") | ("IM9001144771", "25AA") => NetpJanuary2025
         case ("IM9001144771", "25AB") => NetpFebruary2025
         case ("IM9001234567", "23AJ") => october2023Return
         case ("IM9001234567", "23AK") => returnWithPositiveAndNegativeCorrections("23AK", LocalDate.of(2023, 11, 1), LocalDate.of(2023, 11, 30))
@@ -105,6 +106,7 @@ class EtmpController @Inject()(
           case "IM9003333333" | "IM9004444444" => StubData.fulfilledDecember2023Response
           case "IM9006231111" => StubData.oldestPreviousRegistrationFulfilled
           case "IM9007231111" => StubData.latestPreviousRegistrationFulfilled
+          case "IM9001001001" => StubData.twoFulfilledDifferentYears
           case "IM9001144771" | "IM9001144772" | "IM9001144777" => StubData.twoFulfilledInt
           case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778" => StubData.allOpenInt
           case _ => StubData.defaultObligationsResponse
