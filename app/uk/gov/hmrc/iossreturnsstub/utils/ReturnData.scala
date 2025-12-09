@@ -279,6 +279,105 @@ object ReturnData {
       paymentReference = s"XI/IM9001236667/$referencePeriod"
     )
   }
+
+  val NetpJanuary2025: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("25AA")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001144771/$referencePeriod",
+      returnVersion = LocalDateTime.of(2025, 2, 1, 0, 0, 0),
+      periodKey = "25AA",
+      returnPeriodFrom = LocalDate.of(2025, 1, 1),
+      returnPeriodTo = LocalDate.of(2025, 1, 31),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(6000.00),
+          vatAmountGBP = BigDecimal(1000.00)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(4000.00),
+          vatAmountGBP = BigDecimal(397.30)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(10000.00),
+      totalVATAmountPayable = BigDecimal(1397.30),
+      totalVATAmountPayableAllSpplied = BigDecimal(1397.30),
+      correctionPreviousVATReturn = Seq.empty,
+      totalVATAmountFromCorrectionGBP = BigDecimal(0.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(1000.00),
+          totalVATEUR = BigDecimal(1000.00)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(397.30),
+          totalVATEUR = BigDecimal(397.30)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
+      paymentReference = s"XI/IM9001144771/$referencePeriod"
+    )
+  }
+
+  val NetpFebruary2025: EtmpVatReturn = {
+    val referencePeriod = toReferencePeriod("25AB")
+
+    EtmpVatReturn(
+      returnReference = s"XI/IM9001144771/$referencePeriod",
+      returnVersion = LocalDateTime.of(2025, 3, 1, 0, 0, 0),
+      periodKey = "25AB",
+      returnPeriodFrom = LocalDate.of(2025, 2, 1),
+      returnPeriodTo = LocalDate.of(2025, 2, 28),
+      goodsSupplied = Seq(
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "DE",
+          vatRateType = EtmpVatRateType.StandardVatRate,
+          taxableAmountGBP = BigDecimal(6000.00),
+          vatAmountGBP = BigDecimal(1500.00)
+        ),
+        EtmpVatReturnGoodsSupplied(
+          msOfConsumption = "FR",
+          vatRateType = EtmpVatRateType.ReducedVatRate,
+          taxableAmountGBP = BigDecimal(4000.00),
+          vatAmountGBP = BigDecimal(397.30)
+        ),
+      ),
+      totalVATGoodsSuppliedGBP = BigDecimal(10000.00),
+      totalVATAmountPayable = BigDecimal(1397.30),
+      totalVATAmountPayableAllSpplied = BigDecimal(1397.30),
+      correctionPreviousVATReturn = Seq(
+        EtmpVatReturnCorrection(
+          periodKey = "25AA",
+          periodFrom = LocalDate.of(2025, 1, 1).toString,
+          periodTo = LocalDate.of(2025, 1, 31).toString,
+          msOfConsumption = "DE",
+          totalVATAmountCorrectionGBP = BigDecimal(-500.00),
+          totalVATAmountCorrectionEUR = BigDecimal(-500.00)
+        )
+      ),
+      totalVATAmountFromCorrectionGBP = BigDecimal(-500.00),
+      balanceOfVATDueForMS = Seq(
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "DE",
+          totalVATDueGBP = BigDecimal(1000.00),
+          totalVATEUR = BigDecimal(1000.00)
+        ),
+        EtmpVatReturnBalanceOfVatDue(
+          msOfConsumption = "FR",
+          totalVATDueGBP = BigDecimal(397.30),
+          totalVATEUR = BigDecimal(397.30)
+        )
+      ),
+      totalVATAmountDueForAllMSGBP = BigDecimal(1397.30),
+      paymentReference = s"XI/IM9001144771/$referencePeriod"
+    )
+  }
   
   val correctionsScenarioNovemberReturn: EtmpVatReturn = {
     val referencePeriod = toReferencePeriod("23AK")
@@ -664,9 +763,6 @@ object ReturnData {
       paymentReference = s"XI/$iossNumber/$referencePeriod"
     )
   }
-
-
-
 
 
   def october2023Return: EtmpVatReturn = {
