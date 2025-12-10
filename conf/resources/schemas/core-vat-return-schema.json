@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "javaType": "uk.gov.hmrc.oss.returns.input.model.v1.OssNiReturn",
   "title": "Returns",
-  "description": "Returns Request v13",
+  "description": "Returns Request v14",
   "type": "object",
   "properties": {
     "vatReturnReferenceNumber": {
@@ -185,6 +185,31 @@
           "type": "string",
           "minLength": 12,
           "maxLength": 12
+        },
+        "intermediary": {
+          "type": "object",
+          "properties": {
+            "issuedBy": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "intNumber": {
+              "type": "string",
+              "minLength": 12,
+              "maxLength": 12,
+              "pattern": "^IN[0-9]{10}$"
+            },
+            "intChangeDate": {
+              "$ref": "#/definitions/date-time"
+            }
+          },
+          "required": [
+            "issuedBy",
+            "intNumber",
+            "intChangeDate"
+          ],
+          "additionalProperties": false
         },
         "issuedBy": {
           "$ref": "#/definitions/country-code-ni"

@@ -371,6 +371,52 @@ object StubData {
     )
   )
 
+  val twoReturnsOnePartialOneUnpaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.JANUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.JANUARY, 31)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(1397.30)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.FEBRUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.FEBRUARY, 28)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(397.30)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    )
+  )
+
+  val twoReturnsOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.JANUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.JANUARY, 31)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(1397.30)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(LocalDate.of(2025, Month.FEBRUARY, 1)),
+      taxPeriodTo = Some(LocalDate.of(2025, Month.FEBRUARY, 28)),
+      originalAmount = Some(BigDecimal(1397.30)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1397.30)),
+      items = Some(items)
+    )
+  )
+
   val threeReturnsOneUnknownOneUnpaidOnePaid: Seq[FinancialTransaction] = Seq(
     FinancialTransaction(
       chargeType = Some("G Ret FR EU-OMS"),
@@ -459,63 +505,63 @@ object StubData {
     obligationDetails = Seq(
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AA"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(1))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AB"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(2))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AC"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(3))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AD"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(4))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AE"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(5))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AF"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(6))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AG"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(7))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AH"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(8))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AI"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(9))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AJ"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(10))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AK"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "23AL"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AJ"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(10))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AK"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(11))
       ),
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Fulfilled,
-        periodKey = "22AL"
+        periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
       )
     )
   )))
@@ -1498,6 +1544,44 @@ object StubData {
       )
     )
   )))
+
+
+  val twoFulfilledInt: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "25AC"
+      )
+    )
+  )))
+
+  val allOpenInt: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "25AB"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Open,
+        periodKey = "25AC"
+      )
+    )
+  )))
+
+  val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
+  val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
   private def getEtmpStringFromDate(date: LocalDate): String = {
     s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"

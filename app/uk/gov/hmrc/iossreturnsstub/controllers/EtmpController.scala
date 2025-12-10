@@ -18,12 +18,12 @@ package uk.gov.hmrc.iossreturnsstub.controllers
 
 import play.api.Logging
 import play.api.libs.json.Json
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.iossreturnsstub.models.ObligationsDateRange
-import uk.gov.hmrc.iossreturnsstub.models.etmp._
+import uk.gov.hmrc.iossreturnsstub.models.etmp.*
 import uk.gov.hmrc.iossreturnsstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossreturnsstub.utils.ReturnData._
+import uk.gov.hmrc.iossreturnsstub.utils.ReturnData.*
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.LocalDate
@@ -77,7 +77,9 @@ class EtmpController @Inject()(
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
         def generateObligations(idNumber: String): EtmpObligations = idNumber match {
-          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9059999994" | "IM9001233211" | "IM9004999991" | "IM9019999998" | "IM9004999993" | "IM9004999992" | "IM9004999994" | "IM9005999993" | "IM9005999996" | "IM9005999991" | "IM9005999992" | "IM9005999994" | "IM9029999997" | "IM9019999997" => StubData.multipleCorrectionPeriods
+          case "IM9001234568" | "IM9029999994" | "IM9039999994" | "IM9059999994" | "IM9001233211" | "IM9004999991"
+               | "IM9019999998" | "IM9004999993" | "IM9004999992" | "IM9004999994" | "IM9005999993" | "IM9005999996"
+               | "IM9005999991" | "IM9005999992" | "IM9005999994" | "IM9029999997" | "IM9019999997" => StubData.multipleCorrectionPeriods
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
@@ -101,6 +103,8 @@ class EtmpController @Inject()(
           case "IM9003333333" | "IM9004444444" => StubData.fulfilledDecember2023Response
           case "IM9006231111" => StubData.oldestPreviousRegistrationFulfilled
           case "IM9007231111" => StubData.latestPreviousRegistrationFulfilled
+          case "IM9001144771" | "IM9001144772" | "IM9001144777" => StubData.twoFulfilledInt
+          case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778" => StubData.allOpenInt
           case _ => StubData.defaultObligationsResponse
         }
 
@@ -114,15 +118,19 @@ class EtmpController @Inject()(
     implicit request =>
 
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
+
         val accumulativeCorrectionAmount = (iossNumber, country, period) match {
+          case ("IM9001144777", "DE", "25AA") => BigDecimal(1000.00)
+          case ("IM9001144777", "DE", "25AB") => BigDecimal(2000.00)
+          case ("IM9001144777", "FR", "25AB") => BigDecimal(1500.00)
           case ("IM9001234567", "DE", "23AJ") => BigDecimal(1469.13)
           case ("IM9001234567", "DE", "23AK") => BigDecimal(2469.13)
           case ("IM9001234567", "FR", "23AJ") => BigDecimal(1397.30)
           case ("IM9001234567", "FR", "23AK") => BigDecimal(2397.30)
           case ("IM9001233211", "DE", "23AJ") => BigDecimal(3500.00)
           case ("IM9001233211", "FR", "23AJ") => BigDecimal(4500.00)
-          case ("IM9001234569", "DE", "23AL") => BigDecimal(2469.13)
-          case ("IM9001234569", "FR", "22AL") => BigDecimal(2397.30)
+          case ("IM9001234569", "DE", StubData.decemberLastYear) => BigDecimal(2469.13)
+          case ("IM9001234569", "FR", StubData.decembertwoYearsAgo) => BigDecimal(2397.30)
           case _ => BigDecimal(0)
         }
 

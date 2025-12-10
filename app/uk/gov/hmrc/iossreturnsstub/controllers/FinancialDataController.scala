@@ -60,6 +60,9 @@ class FinancialDataController @Inject()(
       case "IM9007230001" => (Ok, Some(threeReturnsTwoOutstandingOnePaidPreviousRegistration)) //Three returns, partially paid and paid for oldest multiple previous registration
       case "IM9004230000" | "IM9007230005" => (Ok, Some(threeReturnsOneOutstandingTwoPaidPreviousRegistration)) //Three returns, one outstanding, two paid for previous registration
       case "IM9007230004" => (Ok, Some(threeReturnsOneOutstandingTwoPaidOlderPreviousRegistration)) //Three returns, one outstanding, two paid for older previous registration
+      case "IM9001144771" => (Ok, Some(twoReturnsOnePartialOneUnpaid)) //NETP - two returns, one outstanding, one partially paid
+      case "IM9001144777" => (Ok, Some(twoReturnsOneUnpaidOnePaid)) //NETP - two returns, one outstanding, one paid
+      case "IM9001144773" => (Ok, Some(Seq.empty)) //NETP - no returns submitted yet, no payments
 
 
       case _ => (Ok, successfulResponse.financialTransactions) //Two returns, both with outstanding payments
