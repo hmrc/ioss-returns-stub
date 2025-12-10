@@ -107,6 +107,7 @@ class EtmpController @Inject()(
           case "IM9006231111" => StubData.oldestPreviousRegistrationFulfilled
           case "IM9007231111" => StubData.latestPreviousRegistrationFulfilled
           case "IM9001001001" => StubData.twoFulfilledDifferentYears
+          case "IM9002002002" => StubData.sixYearsAgoNetp
           case "IM9001144884" => StubData.twoFulfilledIntExcluded
           case "IM9001144771" | "IM9001144772" | "IM9001144777" => StubData.twoFulfilledInt
           case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778" => StubData.allOpenInt
