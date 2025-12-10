@@ -1545,6 +1545,19 @@ object StubData {
     )
   )))
 
+  val twoFulfilledDifferentYears: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "24AL"
+      )
+    )
+  )))
+
 
   val twoFulfilledInt: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
     obligationDetails = Seq(
@@ -1559,6 +1572,19 @@ object StubData {
       EtmpObligationDetails(
         status = EtmpObligationsFulfilmentStatus.Open,
         periodKey = "25AC"
+      )
+    )
+  )))
+
+  val twoFulfilledIntExcluded: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
+    obligationDetails = Seq(
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AA"
+      ),
+      EtmpObligationDetails(
+        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        periodKey = "25AB"
       )
     )
   )))
@@ -1579,6 +1605,37 @@ object StubData {
       )
     )
   )))
+
+  val sixYearsAgoNetp: EtmpObligations = {
+    val sixYearsTwoMonths = getEtmpStringFromDate(LocalDate.now().minusYears(6).minusMonths(2))
+    val sixYearsOneMonth = getEtmpStringFromDate(LocalDate.now().minusYears(6).minusMonths(1))
+    val sixYears = getEtmpStringFromDate(LocalDate.now().minusYears(6))
+    val fiveYearsElevenMonths = getEtmpStringFromDate(LocalDate.now().minusYears(5).minusMonths(11))
+
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sixYearsTwoMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sixYearsOneMonth
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sixYears
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = fiveYearsElevenMonths
+          )
+        )
+      ))
+    )
+  }
 
   val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
   val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
