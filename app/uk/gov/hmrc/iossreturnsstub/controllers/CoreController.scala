@@ -17,8 +17,8 @@
 package uk.gov.hmrc.iossreturnsstub.controllers
 
 import play.api.Logging
-import play.api.libs.json.{JsError, Json, JsValue}
-import play.api.mvc._
+import play.api.libs.json.{JsError, JsValue, Json, __}
+import play.api.mvc.*
 import uk.gov.hmrc.iossreturnsstub.models.{CoreErrorResponse, CoreVatReturn, EisErrorResponse}
 import uk.gov.hmrc.iossreturnsstub.utils.JsonSchemaHelper
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -45,10 +45,13 @@ class CoreController @Inject()(
       jsonSchemaHelper.applySchemaValidation("/resources/schemas/core-vat-return-schema.json", jsonBody) {
 
         val rawValue = jsonBody.map(body => (body \ "vatReturnReferenceNumber").as[String])
-        if(rawValue.exists(_.contains("9007777777"))) {
+        val failureReturnsIossNumbers = Seq("9007777777", "9007777771")
+        val failureReturnsIossNumbersCore = Seq("9007777778", "9007777772")
+
+        if (rawValue.exists(numToCheck => failureReturnsIossNumbers.exists(x => numToCheck.contains(x)))) {
           logger.info("Resource not found: Registration")
           Future.successful(BadRequest(Json.toJson(EisErrorResponse(CoreErrorResponse(Instant.now(clock), None, "OSS_009", "Resource not found: Registration")))))
-        } else if(rawValue.exists(_.contains("9007777778"))) {
+        } else if (rawValue.exists(numToCheck => failureReturnsIossNumbersCore.exists(x => numToCheck.contains(x)))) {
           logger.info("Error received from Core")
           Future.successful(Forbidden(Json.toJson(EisErrorResponse(CoreErrorResponse(Instant.now(clock), None, "OSS_123", "Error received from Core")))))
         } else {
