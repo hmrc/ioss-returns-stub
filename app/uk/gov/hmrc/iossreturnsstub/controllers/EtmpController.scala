@@ -95,10 +95,10 @@ class EtmpController @Inject()(
           case "IM9008888882" => StubData.sixMonthsAcrossTwoYearsSubmittedPeriods
           case "IM9008888885" => StubData.previousMonthSubmittedPeriod
           case "IM9005999777" => StubData.firstSubmittedReturnAfterTransferringFromAnotherMSID
-          case "IM9005999997" => StubData.firstReturnAfterTransferringFromAnotherMSID
+          case "IM9005999997" | "IM9005555551" => StubData.firstReturnAfterTransferringFromAnotherMSID
           case "IM9005999977" => StubData.secondReturnAfterTransferringFromAnotherMSID
           case "IM9009955555" => StubData.returnsSubmittedBeforeTransferringToAnotherMSID
-          case "IM9009999555" => StubData.returnsBeforeTransferringToAnotherMSID
+          case "IM9009999555" | "IM9005555552" => StubData.returnsBeforeTransferringToAnotherMSID
           case "IM9009995555" => StubData.returnsBeforeTransferringToAnotherMSIDTwoOpen
           case "IM9002999993" => StubData.periodsBeforeQuarantine
           case "IM9003999993" => StubData.periodBeforeCurrentQuarantine
