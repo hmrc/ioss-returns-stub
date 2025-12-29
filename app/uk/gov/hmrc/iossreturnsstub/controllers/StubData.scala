@@ -1637,6 +1637,47 @@ object StubData {
     )
   }
 
+  val threeYearsAgoNetp: EtmpObligations = {
+    val threeYearsAgoThreeMonths = getEtmpStringFromDate(LocalDate.now().minusYears(3).minusMonths(3))
+    val threeYearsAgoTwoMonths = getEtmpStringFromDate(LocalDate.now().minusYears(3).minusMonths(2))
+    val threeYearsAgoOneMonth = getEtmpStringFromDate(LocalDate.now().minusYears(3).minusMonths(1))
+    val threeYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(3))
+    val twoYearsAgoElevenMonths = getEtmpStringFromDate(LocalDate.now().minusYears(2).minusMonths(11))
+    val twoYearsAgoTenMonths = getEtmpStringFromDate(LocalDate.now().minusYears(2).minusMonths(10))
+
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoThreeMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoTwoMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoOneMonth
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgo
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoYearsAgoElevenMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoYearsAgoTenMonths
+          )
+        )
+      ))
+    )
+  }
+
   val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
   val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
