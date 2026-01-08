@@ -607,8 +607,8 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
         ("IM9001234567", "FR", "23AK", BigDecimal(2397.30)),
         ("IM9001233211", "DE", "23AJ", BigDecimal(3500.00)),
         ("IM9001233211", "FR", "23AJ", BigDecimal(4500.00)),
-        ("IM9001234569", "DE", StubData.decemberLastYear, BigDecimal(2469.13)),
-        ("IM9001234569", "FR", StubData.decembertwoYearsAgo, BigDecimal(2397.30)),
+        ("IM9001234569", "DE", StubData.novemberLastYear, BigDecimal(2469.13)),
+        ("IM9001234569", "FR", StubData.decemberTwoYearsAgo, BigDecimal(2397.30)),
       )
 
       testCases.foreach { case (iossNumber, country, period, expectedValue) =>

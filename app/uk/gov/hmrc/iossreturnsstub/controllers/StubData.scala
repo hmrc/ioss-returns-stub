@@ -548,7 +548,7 @@ object StubData {
         periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        status = EtmpObligationsFulfilmentStatus.Open,
         periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
       ),
       EtmpObligationDetails(
@@ -1678,8 +1678,8 @@ object StubData {
     )
   }
 
-  val decemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
-  val decembertwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
+  val novemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
+  val decemberTwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
   private def getEtmpStringFromDate(date: LocalDate): String = {
     s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"
