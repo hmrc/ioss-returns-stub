@@ -110,8 +110,9 @@ class EtmpController @Inject()(
           case "IM9002002002" => StubData.sixYearsAgoNetp
           case "IM9004004004" => StubData.threeYearsAgoNetp
           case "IM9001144884" => StubData.twoFulfilledIntExcluded
-          case "IM9001144771" | "IM9001144772" | "IM9001144777" => StubData.twoFulfilledInt
-          case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778" => StubData.allOpenInt
+          case "IM9001144771" | "IM9001144772" | "IM9001144777" | "IM9006655443" | "IM9006655552" => StubData.twoFulfilledInt
+          case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778"
+                | "IM9006655441" | "IM9006655442" | "IM9006655551" | "IM9006655553" => StubData.allOpenInt
           case _ => StubData.defaultObligationsResponse
         }
 
@@ -136,8 +137,8 @@ class EtmpController @Inject()(
           case ("IM9001234567", "FR", "23AK") => BigDecimal(2397.30)
           case ("IM9001233211", "DE", "23AJ") => BigDecimal(3500.00)
           case ("IM9001233211", "FR", "23AJ") => BigDecimal(4500.00)
-          case ("IM9001234569", "DE", StubData.decemberLastYear) => BigDecimal(2469.13)
-          case ("IM9001234569", "FR", StubData.decembertwoYearsAgo) => BigDecimal(2397.30)
+          case ("IM9001234569", "DE", StubData.novemberLastYear) => BigDecimal(2469.13)
+          case ("IM9001234569", "FR", StubData.decemberTwoYearsAgo) => BigDecimal(2397.30)
           case _ => BigDecimal(0)
         }
 
