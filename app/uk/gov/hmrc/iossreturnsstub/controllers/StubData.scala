@@ -548,7 +548,7 @@ object StubData {
         periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
       ),
       EtmpObligationDetails(
-        status = EtmpObligationsFulfilmentStatus.Fulfilled,
+        status = EtmpObligationsFulfilmentStatus.Open,
         periodKey = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(12))
       ),
       EtmpObligationDetails(
