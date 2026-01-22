@@ -1681,6 +1681,66 @@ object StubData {
   val novemberLastYear = getEtmpStringFromDate(LocalDate.now().minusYears(1).withMonth(11))
   val decemberTwoYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(2).withMonth(12))
 
+  val nineMonthsAndEightMonthsAgoNetp: EtmpObligations = {
+    val nineMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(9))
+    val eightMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(8))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = nineMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = eightMonths
+          )
+        )
+      ))
+    )
+  }
+
+  val sixMonthsAndFiveMonthsAgoNetp: EtmpObligations = {
+    val sixMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(6))
+    val fiveMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(5))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = sixMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = fiveMonths
+          )
+        )
+      ))
+    )
+  }
+
+  val threeMonthsAndTwoMonthsAgoNetp: EtmpObligations = {
+    val threeMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(3))
+    val twoMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoMonths
+          )
+        )
+      ))
+    )
+  }
+
   private def getEtmpStringFromDate(date: LocalDate): String = {
     s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"
   }

@@ -109,6 +109,9 @@ class EtmpController @Inject()(
           case "IM9001001001" => StubData.twoFulfilledDifferentYears
           case "IM9002002002" => StubData.sixYearsAgoNetp
           case "IM9004004004" => StubData.threeYearsAgoNetp
+          case "IM9001144667" | "IM9001144668" => StubData.nineMonthsAndEightMonthsAgoNetp
+          case "IM9001144669" | "IM9001144670" | "IM9002144669" | "IM9002144670" => StubData.sixMonthsAndFiveMonthsAgoNetp
+          case "IM9001144671" | "IM9001144672" | "IM9002144671" | "IM9002144672" => StubData.threeMonthsAndTwoMonthsAgoNetp
           case "IM9001144884" => StubData.twoFulfilledIntExcluded
           case "IM9001144771" | "IM9001144772" | "IM9001144777" | "IM9006655443" | "IM9006655552" => StubData.twoFulfilledInt
           case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778"
