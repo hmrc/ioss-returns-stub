@@ -40,7 +40,7 @@ class FinancialDataControllerSpec extends AnyWordSpec with Matchers {
     financialTransactions = Some(StubData.financialTransactions)
   )
 
-  private  val dateRange = DateRange(LocalDate.of(2023, 1, 1), LocalDate.of(2023, 12, 31))
+  private  val dateRange = DateRange(LocalDate.of(2023, 1, 1), LocalDate.now())
 
   "GET /financial-data" should {
     "return a successful FinancialDataResponse" in {
