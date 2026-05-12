@@ -70,7 +70,8 @@ class FinancialDataController @Inject()(
 
     val filteredFinancialTransactions = maybeFinancialTransactions.map { financialTransactions =>
       financialTransactions.filter { financialTransaction =>
-        financialTransaction.taxPeriodFrom.exists(tpf => tpf.isAfter(dateRange.fromDate) || tpf.isEqual(dateRange.fromDate))
+        financialTransaction.taxPeriodFrom.exists(tpf => tpf.isAfter(dateRange.fromDate) || tpf.isEqual(dateRange.fromDate)) &&
+          financialTransaction.taxPeriodTo.exists(tpt => tpt.isBefore(dateRange.toDate) || tpt.isEqual(dateRange.toDate))
       }
     }
     val response = successfulResponse.copy(financialTransactions = filteredFinancialTransactions)
