@@ -110,7 +110,6 @@ class EtmpController @Inject()(
           case "IM9002002002" => StubData.sixYearsAgoNetp
           case "IM9004004004" | "IM9005005555" => StubData.threeYearsAgoNetp
           case "IM9005005005" => StubData.threeYearsAgoNetpOpen
-          case "IM9004004004" => StubData.threeYearsAgoNetp
           case "IM9001144667" | "IM9001144668" => StubData.nineMonthsAndEightMonthsAgoNetp
           case "IM9001144669" | "IM9001144670" | "IM9002144669" | "IM9002144670" => StubData.sixMonthsAndFiveMonthsAgoNetp
           case "IM9001144671" | "IM9001144672" | "IM9002144671" | "IM9002144672" => StubData.threeMonthsAndTwoMonthsAgoNetp
