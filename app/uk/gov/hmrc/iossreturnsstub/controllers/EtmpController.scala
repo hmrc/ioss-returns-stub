@@ -58,7 +58,7 @@ class EtmpController @Inject()(
         case ("IM9001236667", "24AL") => December2024Returns
         case ("IM9001236667", "25AA") => January2025Returns
         case ("IM9001001001", "24AL") => NetpDecember2024
-        case ("IM9001001001", "25AA") | ("IM9001144771", "25AA") | ("IM9001144884", "25AA") => NetpJanuary2025
+        case ("IM9001001001", "25AA") | ("IM9001144771", "25AA") | ("IM9001144884", "25AA") | ("IM9001236666", "25AA") => NetpJanuary2025
         case ("IM9001144771", "25AB") | ("IM9001144884", "25AB") => NetpFebruary2025
         case ("IM9001234567", "23AJ") => october2023Return
         case ("IM9001234567", "23AK") => returnWithPositiveAndNegativeCorrections("23AK", LocalDate.of(2023, 11, 1), LocalDate.of(2023, 11, 30))
@@ -86,7 +86,7 @@ class EtmpController @Inject()(
           case "IM9001234569" => StubData.multipleCorrectionPeriodYears
           case "IM9001234999" | "IM9001238999" => StubData.moreThanThreeCorrectionPeriodYears
           case "IM9001239999" => StubData.moreThanThreeYearsOpenReturns
-          case "IM9001236666" => StubData.moreThanSixYearsFulfilledReturns
+          case "IM9001236668" => StubData.moreThanSixYearsFulfilledReturns
           case "IM9008888888" | "IM9008888887" => StubData.singleCorrectionPeriods
           case "IM9009999888" | "IM9009999992" => StubData.firstPeriodNoCorrections
           case "IM9008888886" | "IM9008888884" | "IM9008888883" | "IM9007230000" | "IM9007230003" | "IM9007230006" => StubData.previousThreeMonthsSubmittedPeriods
@@ -114,6 +114,7 @@ class EtmpController @Inject()(
           case "IM9001144669" | "IM9001144670" | "IM9002144669" | "IM9002144670" => StubData.sixMonthsAndFiveMonthsAgoNetp
           case "IM9001144671" | "IM9001144672" | "IM9002144671" | "IM9002144672" => StubData.threeMonthsAndTwoMonthsAgoNetp
           case "IM9001144884" => StubData.twoFulfilledIntExcluded
+          case "IM9001236666" => StubData.oneFulfilledOneOpenIntExcluded
           case "IM9001144771" | "IM9001144772" | "IM9001144777" | "IM9006655443" | "IM9006655552" => StubData.twoFulfilledInt
           case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778"
                 | "IM9006655441" | "IM9006655442" | "IM9006655551" | "IM9006655553" => StubData.allOpenInt

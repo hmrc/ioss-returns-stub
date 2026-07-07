@@ -394,8 +394,8 @@ class EtmpControllerSpec extends AnyFreeSpec with Matchers {
       contentAsJson(result) shouldBe Json.toJson(expectedResponse)
     }
 
-    "Return OK for moreThanSixYearsFulfilledReturns when idNumber matches 'IM9001236666'" in {
-      val idNumber = "IM9001236666"
+    "Return OK for moreThanSixYearsFulfilledReturns when idNumber matches 'IM9001236668'" in {
+      val idNumber = "IM9001236668"
       val expectedResponse = StubData.moreThanSixYearsFulfilledReturns
       val fakeRequestWithBody = fakeRequest.withHeaders(validFakeHeaders)
 
