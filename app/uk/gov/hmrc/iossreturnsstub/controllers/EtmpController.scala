@@ -118,6 +118,7 @@ class EtmpController @Inject()(
           case "IM9001144771" | "IM9001144772" | "IM9001144777" | "IM9006655443" | "IM9006655552" => StubData.twoFulfilledInt
           case "IM9001144773" | "IM9001144774" | "IM9001144775" | "IM9001144776" | "IM9001144778"
                 | "IM9006655441" | "IM9006655442" | "IM9006655551" | "IM9006655553" => StubData.allOpenInt
+          case "IM9000000044" => StubData.fulfilledTwoMonthsAgo
           case _ => StubData.defaultObligationsResponse
         }
 
