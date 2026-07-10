@@ -1788,6 +1788,21 @@ object StubData {
     )
   }
 
+  val fulfilledTwoMonthsAgo: EtmpObligations = {
+    val twoMonths = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoMonths
+          )
+        )
+      ))
+    )
+  }
+
   private def getEtmpStringFromDate(date: LocalDate): String = {
     s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"
   }
