@@ -63,6 +63,7 @@ class FinancialDataController @Inject()(
       case "IM9001144771" => (Ok, Some(twoReturnsOnePartialOneUnpaid)) //NETP - two returns, one outstanding, one partially paid
       case "IM9001144777" => (Ok, Some(twoReturnsOneUnpaidOnePaid)) //NETP - two returns, one outstanding, one paid
       case "IM9001144773" => (Ok, Some(Seq.empty)) //NETP - no returns submitted yet, no payments
+      case "IM9004004004" => (Ok, Some(netpOverThreeYears)) //NETP - payments over 3 years overdue
 
 
       case _ => (Ok, successfulResponse.financialTransactions) //Two returns, both with outstanding payments
