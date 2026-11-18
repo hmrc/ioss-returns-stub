@@ -54,6 +54,14 @@ object StubData {
   private val threeYearsAgoTwoMonths = getEtmpStringFromDate(LocalDate.now().minusYears(3).minusMonths(2))
   private val threeYearsAgoOneMonth = getEtmpStringFromDate(LocalDate.now().minusYears(3).minusMonths(1))
   private val threeYearsAgo = getEtmpStringFromDate(LocalDate.now().minusYears(3))
+
+  private val threeYearsAgoThreeMonthsFirst = LocalDate.now().minusYears(3).minusMonths(3).withDayOfMonth(1)
+  private val threeYearsAgoThreeMonthsLast = LocalDate.now().minusYears(3).minusMonths(2).withDayOfMonth(1).minusDays(1)
+  private val threeYearsAgoTwoMonthsFirst = LocalDate.now().minusYears(3).minusMonths(2).withDayOfMonth(1)
+  private val threeYearsAgoTwoMonthsLast = LocalDate.now().minusYears(3).minusMonths(1).withDayOfMonth(1).minusDays(1)
+  private val threeYearsAgoOneMonthFirst = LocalDate.now().minusYears(3).minusMonths(1).withDayOfMonth(1)
+  private val threeYearsAgoOneMonthLast = LocalDate.now().minusYears(3).withDayOfMonth(1).minusDays(1)
+
   private val twoYearsAgoElevenMonths = getEtmpStringFromDate(LocalDate.now().minusYears(2).minusMonths(11))
   private val twoYearsAgoTenMonths = getEtmpStringFromDate(LocalDate.now().minusYears(2).minusMonths(10))
 
@@ -459,6 +467,39 @@ object StubData {
       clearedAmount = Some(BigDecimal(1000)),
       items = Some(items)
     ))
+
+  val netpOverThreeYears: Seq[FinancialTransaction] = Seq(
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(threeYearsAgoThreeMonthsFirst),
+      taxPeriodTo = Some(threeYearsAgoThreeMonthsLast),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(1500)),
+      clearedAmount = Some(BigDecimal(0)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(threeYearsAgoTwoMonthsFirst),
+      taxPeriodTo = Some(threeYearsAgoTwoMonthsLast),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(500)),
+      clearedAmount = Some(BigDecimal(1000)),
+      items = Some(items)
+    ),
+    FinancialTransaction(
+      chargeType = Some("G Ret FR EU-OMS"),
+      mainType = None,
+      taxPeriodFrom = Some(threeYearsAgoOneMonthFirst),
+      taxPeriodTo = Some(threeYearsAgoOneMonthLast),
+      originalAmount = Some(BigDecimal(1500)),
+      outstandingAmount = Some(BigDecimal(0)),
+      clearedAmount = Some(BigDecimal(1500)),
+      items = Some(items)
+    )
+  )
 
 
   val defaultObligationsResponse: EtmpObligations = EtmpObligations(obligations = Seq(EtmpObligation(
@@ -1657,7 +1698,41 @@ object StubData {
     )
   }
 
-  val threeYearsAgoNetp: EtmpObligations = {
+  val threeYearsAgoNetpFulfilled: EtmpObligations = {
+
+    EtmpObligations(obligations =
+      Seq(EtmpObligation(
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoThreeMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoTwoMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgoOneMonth
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = threeYearsAgo
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoYearsAgoElevenMonths
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoYearsAgoTenMonths
+          )
+        )
+      ))
+    )
+  }
+
+  val threeYearsAgoNetpOpenOverThreeYears: EtmpObligations = {
 
     EtmpObligations(obligations =
       Seq(EtmpObligation(
